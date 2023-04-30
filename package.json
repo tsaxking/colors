@@ -1,6 +1,6 @@
 {
   "name": "js-paint",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Hello, this is a simple client-side library for basic color theory",
   "main": "index.js",
   "scripts": {},
