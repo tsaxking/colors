@@ -12,209 +12,209 @@ interface Color {
 };
 
 type ColorStr = 
-"aliceblue"      |
-"antiquewhite"|
-"aqua"|
-"aquamarine"|
-"azure"|
-"beige"|
-"bisque"|
-"black"|
-"blanchedalmond"|
-"blue" |
-"blueviolet"|
-"brown"|
-"burlywood"|
-"cadetblue"|
-"chartreuse"|
-"chocolate"|
-"coral"|
-"cornflowerblue"|
-"cornsilk"|
-"crimson"|
-"cyan"|
-"darkblue"|
-"darkcyan"|
-"darkgoldenrod"|
-"darkgray"|
-"darkgreen"|
-"darkgrey"|
-"darkkhaki"|
-"darkmagenta"|
-"darkolivegreen"|
-"darkorange"|
-"darkorchid"|
-"darkred"|
-"darksalmon"|
-"darkseagreen"|
-"darkslateblue"|
-"darkslategray"|
-"darkslategrey"|
-"darkturquoise"|
-"darkviolet"|
-"deeppink"|
-"deepskyblue"|
-"dimgray"|
-"dimgrey"|
-"dodgerblue"|
-"firebrick"|
-"floralwhite"|
-"forestgreen"|
-"fuchsia"|
-"gainsboro"|
-"ghostwhite"|
-"gold"|
-"goldenrod"|
-"gray"|
-"green"|
-"greenyellow"|
-"grey"|
-"honeydew"|
-"hotpink"|
-"indianred"|
-"indigo"|
-"ivory"|
-"khaki"|
-"lavender"|
-"lavenderblush"|
-"lawngreen"|
-"lemonchiffon"|
-"lightblue"|
-"lightcoral"|
-"lightcyan"|
-"lightgoldenrodyellow"|
-"lightgray"|
-"lightgreen"|
-"lightgrey"|
-"lightpink"|
-"lightsalmon"|
-"lightseagreen"|
-"lightskyblue"|
-"lightslategray"|
-"lightslategrey"|
-"lightsteelblue"|
-"lightyellow"|
-"lime"|
-"limegreen"|
-"linen"|
-"magenta"|
-"maroon"|
-"mediumaquamarine"|
-"mediumblue"|
-"mediumorchid"|
-"mediumpurple"|
-"mediumseagreen"|
-"mediumslateblue"|
-"mediumspringgreen"|
-"mediumturquoise"|
-"mediumvioletred"|
-"midnightblue"|
-"mintcream"|
-"mistyrose"|
-"moccasin"|
-"navajowhite"|
-"navy"|
-"oldlace"|
-"olive"|
-"olivedrab"|
-"orange"|
-"orangered"|
-"orchid"|
-"palegoldenrod"|
-"palegreen"|
-"paleturquoise"|
-"palevioletred"|
-"papayawhip"|
-"peachpuff"|
-"peru"|
-"pink"|
-"plum"|
-"powderblue"|
-"purple"|
-"red"|
-"rosybrown"|
-"royalblue"|
-"saddlebrown"|
-"salmon"|
-"sandybrown"|
-"seagreen"|
-"seashell"|
-"sienna"|
-"silver"|
-"skyblue"|
-"slateblue"|
-"slategray"|
-"slategrey"|
-"snow"|
-"springgreen"|
-"steelblue"|
-"tan"|
-"teal"|
-"thistle"|
-"tomato"|
-"transparent"|
-"turquoise"|
-"violet"|
-"wheat"|
-"white"|
-"whitesmoke"|
-"yellow"|
-"yellowgreen"|
-"rebeccapurple";
+    "aliceblue"|
+    "antiquewhite"|
+    "aqua"|
+    "aquamarine"|
+    "azure"|
+    "beige"|
+    "bisque"|
+    "black"|
+    "blanchedalmond"|
+    "blue" |
+    "blueviolet"|
+    "brown"|
+    "burlywood"|
+    "cadetblue"|
+    "chartreuse"|
+    "chocolate"|
+    "coral"|
+    "cornflowerblue"|
+    "cornsilk"|
+    "crimson"|
+    "cyan"|
+    "darkblue"|
+    "darkcyan"|
+    "darkgoldenrod"|
+    "darkgray"|
+    "darkgreen"|
+    "darkgrey"|
+    "darkkhaki"|
+    "darkmagenta"|
+    "darkolivegreen"|
+    "darkorange"|
+    "darkorchid"|
+    "darkred"|
+    "darksalmon"|
+    "darkseagreen"|
+    "darkslateblue"|
+    "darkslategray"|
+    "darkslategrey"|
+    "darkturquoise"|
+    "darkviolet"|
+    "deeppink"|
+    "deepskyblue"|
+    "dimgray"|
+    "dimgrey"|
+    "dodgerblue"|
+    "firebrick"|
+    "floralwhite"|
+    "forestgreen"|
+    "fuchsia"|
+    "gainsboro"|
+    "ghostwhite"|
+    "gold"|
+    "goldenrod"|
+    "gray"|
+    "green"|
+    "greenyellow"|
+    "grey"|
+    "honeydew"|
+    "hotpink"|
+    "indianred"|
+    "indigo"|
+    "ivory"|
+    "khaki"|
+    "lavender"|
+    "lavenderblush"|
+    "lawngreen"|
+    "lemonchiffon"|
+    "lightblue"|
+    "lightcoral"|
+    "lightcyan"|
+    "lightgoldenrodyellow"|
+    "lightgray"|
+    "lightgreen"|
+    "lightgrey"|
+    "lightpink"|
+    "lightsalmon"|
+    "lightseagreen"|
+    "lightskyblue"|
+    "lightslategray"|
+    "lightslategrey"|
+    "lightsteelblue"|
+    "lightyellow"|
+    "lime"|
+    "limegreen"|
+    "linen"|
+    "magenta"|
+    "maroon"|
+    "mediumaquamarine"|
+    "mediumblue"|
+    "mediumorchid"|
+    "mediumpurple"|
+    "mediumseagreen"|
+    "mediumslateblue"|
+    "mediumspringgreen"|
+    "mediumturquoise"|
+    "mediumvioletred"|
+    "midnightblue"|
+    "mintcream"|
+    "mistyrose"|
+    "moccasin"|
+    "navajowhite"|
+    "navy"|
+    "oldlace"|
+    "olive"|
+    "olivedrab"|
+    "orange"|
+    "orangered"|
+    "orchid"|
+    "palegoldenrod"|
+    "palegreen"|
+    "paleturquoise"|
+    "palevioletred"|
+    "papayawhip"|
+    "peachpuff"|
+    "peru"|
+    "pink"|
+    "plum"|
+    "powderblue"|
+    "purple"|
+    "red"|
+    "rosybrown"|
+    "royalblue"|
+    "saddlebrown"|
+    "salmon"|
+    "sandybrown"|
+    "seagreen"|
+    "seashell"|
+    "sienna"|
+    "silver"|
+    "skyblue"|
+    "slateblue"|
+    "slategray"|
+    "slategrey"|
+    "snow"|
+    "springgreen"|
+    "steelblue"|
+    "tan"|
+    "teal"|
+    "thistle"|
+    "tomato"|
+    "transparent"|
+    "turquoise"|
+    "violet"|
+    "wheat"|
+    "white"|
+    "whitesmoke"|
+    "yellow"|
+    "yellowgreen"|
+    "rebeccapurple";
 
 
 
 type BootstrapColor = 
-"primary"|
-"secondary"|
-"success"|
-"info"|
-"warning"|
-"danger"|
-"light"|
-"dark"|
-"indigo"|
-"indigo-light"|
-"indigo-dark"|
-"teal"|
-"teal-light"|
-"teal-dark"|
-"orange"|
-"orange-light"|
-"orange-dark"|
-"pink"|
-"pink-light"|
-"pink-dark"|
-"purple"|
-"purple-light"|
-"purple-dark"|
-"navy"|
-"navy-light"|
-"navy-dark"|
-"yellow"|
-"yellow-light"|
-"yellow-dark"|
-"lime"|
-"lime-light"|
-"lime-dark"|
-"gray"|
-"gray-light"|
-"gray-dark"|
-"brown"|
-"brown-light"|
-"brown-dark"|
-"grape"|
-"grape-light"|
-"grape-dark"|
-"vermillion"|
-"vermillion-light"|
-"vermillion-dark"|
-"steel"|
-"steel-light"|
-"steel-dark"|
-"green"|
-"green-light"|
-"green-dark";
+    "primary"|
+    "secondary"|
+    "success"|
+    "info"|
+    "warning"|
+    "danger"|
+    "light"|
+    "dark"|
+    "indigo"|
+    "indigo-light"|
+    "indigo-dark"|
+    "teal"|
+    "teal-light"|
+    "teal-dark"|
+    "orange"|
+    "orange-light"|
+    "orange-dark"|
+    "pink"|
+    "pink-light"|
+    "pink-dark"|
+    "purple"|
+    "purple-light"|
+    "purple-dark"|
+    "navy"|
+    "navy-light"|
+    "navy-dark"|
+    "yellow"|
+    "yellow-light"|
+    "yellow-dark"|
+    "lime"|
+    "lime-light"|
+    "lime-dark"|
+    "gray"|
+    "gray-light"|
+    "gray-dark"|
+    "brown"|
+    "brown-light"|
+    "brown-dark"|
+    "grape"|
+    "grape-light"|
+    "grape-dark"|
+    "vermillion"|
+    "vermillion-light"|
+    "vermillion-dark"|
+    "steel"|
+    "steel-light"|
+    "steel-dark"|
+    "green"|
+    "green-light"|
+    "green-dark";
 
 
 
@@ -230,7 +230,453 @@ type ClosestColor = {
     color: Color;
 };
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 class Color implements Color {
+
+
+    static get math() {
+        class Matrix {
+            constructor(public matrix: number[][]) {}
+
+
+            add(m: Matrix): Matrix {
+                const a = this.matrix;
+                const b = m.matrix;
+
+                const aRows = a.length;
+                const aCols = a[0].length;
+                const bRows = b.length;
+                const bCols = b[0].length;
+
+                if (aRows !== bRows || aCols !== bCols) {
+                    throw new Error('Matrix A rows must match matrix B rows and matrix A columns must match matrix B columns');
+                }
+
+                const result = new Array(aRows);
+
+                for (let r = 0; r < aRows; ++r) {
+                    result[r] = new Array(aCols);
+
+                    for (let c = 0; c < aCols; ++c) {
+                        result[r][c] = a[r][c] + b[r][c];
+                    }
+                }
+
+                return new Matrix(result);
+            }
+
+
+            multiply(m: Matrix): Matrix {
+                const a = this.matrix;
+                const b = m.matrix;
+
+                const aRows = a.length;
+                const aCols = a[0].length;
+                const bRows = b.length;
+                const bCols = b[0].length;
+
+                if (aCols !== bRows) {
+                    throw new Error('Matrix A columns must match matrix B rows');
+                }
+
+                const result = new Array(aRows);
+
+                for (let r = 0; r < aRows; ++r) {
+                    result[r] = new Array(bCols);
+
+                    for (let c = 0; c < bCols; ++c) {
+                        result[r][c] = 0;
+
+                        for (let i = 0; i < aCols; ++i) {
+                            result[r][c] += a[r][i] * b[i][c];
+                        }
+                    }
+                }
+
+                return new Matrix(result);
+            }
+
+
+
+            scale(n: number): Matrix {
+                const m = this.matrix.map(row => row.map(n2 => n2 * n));
+                return new Matrix(m);
+            }
+
+            get modify() {
+                const m = this;
+
+                return {
+                    scale(n: number): Matrix {
+                        m.matrix = m.scale(n).matrix;
+                        return m;
+                    }
+                }
+            }
+
+            multiplyVector(v: Vector): Vector {
+                if (this.matrix.length !== 3 || this.matrix[0].length !== 3) {
+                    throw new Error('Matrix must be 3x3');
+                }
+
+                const x = this.matrix[0][0] * v.x.magnitude + 
+                          this.matrix[0][1] * v.y.magnitude + 
+                          this.matrix[0][2] * v.z.magnitude;
+                const y = this.matrix[1][0] * v.x.magnitude + 
+                          this.matrix[1][1] * v.y.magnitude + 
+                          this.matrix[1][2] * v.z.magnitude;
+                const z = this.matrix[2][0] * v.x.magnitude + 
+                          this.matrix[2][1] * v.y.magnitude + 
+                          this.matrix[2][2] * v.z.magnitude;
+
+                return new Vector(v.point, [x, y, z]);
+            }
+
+
+
+        }
+
+        class Matrix1D {
+            constructor(public matrix: number[]) {}
+
+            add(m: Matrix1D): Matrix1D {
+                const a = this.matrix;
+                const b = m.matrix;
+
+                const aRows = a.length;
+                const bRows = b.length;
+
+                if (aRows !== bRows) {
+                    throw new Error('Matrix A rows must match matrix B rows');
+                }
+
+                const result = new Array(aRows);
+
+                for (let r = 0; r < aRows; ++r) {
+                    result[r] = a[r] + b[r];
+                }
+
+                return new Matrix1D(result);
+            }
+
+            multiply(m: Matrix1D): Matrix1D {
+                const a = this.matrix;
+                const b = m.matrix;
+
+                const aRows = a.length;
+                const bRows = b.length;
+
+                if (aRows !== bRows) {
+                    throw new Error('Matrix A rows must match matrix B rows');
+                }
+
+                const result = new Array(aRows);
+
+                for (let r = 0; r < aRows; ++r) {
+                    result[r] = a[r] * b[r];
+                }
+
+                return new Matrix1D(result);
+            }
+
+            scale(n: number): Matrix1D {
+                const m = this.matrix.map(n2 => n2 * n);
+                return new Matrix1D(m);
+            }
+
+            get modify() {
+                const m = this;
+
+                return {
+                    scale(n: number): Matrix1D {
+                        m.matrix = m.scale(n).matrix;
+                        return m;
+                    }
+                }
+            }
+        }
+
+
+        class Vector {
+            constructor(public point: Color, public rate: [number, number, number]) {}
+
+
+            get magnitude(): number {
+                return Math.sqrt(this.x.magnitude ** 2 + this.y.magnitude ** 2 + this.z.magnitude ** 2);
+            }
+
+
+
+            get x(): {
+                ft: (x: number) => number;
+                pos: number;
+                magnitude: number
+            } {
+                const v = this;
+                return {
+                    ft: (t: number) => this.rate[0] * t,
+                    pos: v.point.math.x,
+                    magnitude: this.rate[0]
+                }
+            }
+
+            get y(): {
+                ft: (t: number) => number;
+                pos: number;
+                magnitude: number
+            } {
+                const v = this;
+                return {
+                    ft: (x: number) => this.rate[1] * x,
+                    pos: v.point.math.y,
+                    magnitude: this.rate[1]
+                }
+            }
+
+            get z(): {
+                ft: (t: number) => number;
+                pos: number;
+                magnitude: number
+            } {
+                const v = this;
+                return {
+                    ft: (x: number) => this.rate[2] * x,
+                    pos: v.point.math.z,
+                    magnitude: this.rate[2]
+                }
+            }
+
+
+            angle(v: Vector): number {
+                return Math.acos(this.dot(v) / (this.magnitude * v.magnitude));
+            }
+
+
+
+            cross(v: Vector): Vector {
+                const ax = this.x.magnitude;
+                const ay = this.y.magnitude;
+                const az = this.z.magnitude;
+
+                const bx = v.x.magnitude;
+                const by = v.y.magnitude;
+                const bz = v.z.magnitude;
+
+                return new Vector(this.point, [
+                    ay * bz - az * by,
+                    az * bx - ax * bz,
+                    ax * by - ay * bx
+                ]);
+            }
+
+            dot(v: Vector): number {
+                return this.rate[0] * v.rate[0] + this.rate[1] * v.rate[1] + this.rate[2] * v.rate[2];
+            }
+
+            add(v: Vector): Vector {
+                return new Vector(this.point, [
+                    this.rate[0] + v.rate[0],
+                    this.rate[1] + v.rate[1],
+                    this.rate[2] + v.rate[2]
+                ]);
+            }
+
+
+            intersect(v: Vector): Color | undefined {
+                // magnitude of the cross product is the volume of the parallelepiped
+                // if the volume is 0, the vectors are parallel
+                if (this.cross(v).magnitude === 0) return undefined;
+
+                const m1x = this.x.magnitude;
+                const m1y = this.y.magnitude;
+                const m1z = this.z.magnitude;
+
+                const b1x = this.x.pos;
+                const b1y = this.y.pos;
+                const b1z = this.z.pos;
+
+                const m2x = v.x.magnitude;
+                const m2y = v.y.magnitude;
+                const m2z = v.z.magnitude;
+
+                const b2x = v.x.pos;
+                const b2y = v.y.pos;
+                const b2z = v.z.pos;
+
+
+
+                // parametric components
+                const fx1 = (t: number) => m1x * t + b1x;
+                const fy1 = (t: number) => m1y * t + b1y;
+                const fz1 = (t: number) => m1z * t + b1z;
+
+                const fx2 = (t: number) => m2x * t + b2x;
+                const fy2 = (t: number) => m2y * t + b2y;
+                const fz2 = (t: number) => m2z * t + b2z;
+
+                const t = (b2x - b1x) / (m1x - m2x);
+                const x1 = fx1(t);
+                const y1 = fy1(t);
+                const z1 = fz1(t);
+                const x2 = fx2(t);
+                const y2 = fy2(t);
+                const z2 = fz2(t);
+
+                const equal = (tolerance: number) => (a: number, b: number) => {
+                    const e = Math.abs(a - b) <= tolerance;
+                    return e;
+                }
+
+                type Point = {
+                    x: number;
+                    y: number;
+                    z: number;
+                }
+
+
+                const pointEqual = (tolerance: number) => (a: Point, b: Point) => {
+                    const e = equal(tolerance);
+                    const x = e(a.x, b.x);
+                    const y = e(a.y, b.y);
+                    const z = e(a.z, b.z);
+
+                    console.log(a, b, x, y, z);
+
+                    return x && y && z;
+                }
+
+
+                try {
+                    return new Color(
+                        x1 * 255,
+                        y1 * 255,
+                        z1 * 255
+                    );
+                } catch (e) {
+                    console.log('Colors do not intersect');
+                }
+            }
+
+
+            intersectPlane(plane: Plane): Color {
+                const normal = plane.normal;
+                const point = plane.point;
+
+                const t = (normal.x.magnitude * (point.r - this.point.r) + normal.y.magnitude * (point.g - this.point.g) + normal.z.magnitude * (point.b - this.point.b)) / (normal.x.magnitude * this.rate[0] + normal.y.magnitude * this.rate[1] + normal.z.magnitude * this.rate[2]);
+
+                return new Color(this.point.r + this.rate[0] * t, this.point.g + this.rate[1] * t, this.point.b + this.rate[2] * t);
+            }
+
+
+
+
+
+            scale(n: number): Vector {
+                return new Vector(this.point, [
+                    this.rate[0] * n,
+                    this.rate[1] * n,
+                    this.rate[2] * n
+                ]);
+            }
+
+
+            determinant(v: Vector): number {
+                return this.cross(v).magnitude;
+            }
+
+
+            get modify() {
+                const v = this;
+                return {
+                    scale(n: number): Vector {
+                        const v2 = v.scale(n);
+                        v.rate = v2.rate;
+                        return v; 
+                    }
+                }
+            }
+
+
+            get plane(): Plane {
+                return new Plane(this.point, this);
+            }
+
+            move(color: Color): Vector {
+                return new Vector(color, this.rate);
+            }
+        }
+
+
+        class Plane {
+            constructor(public point: Color, public normal: Vector) {}
+
+
+            normalTo(v: Vector): Vector {
+                return this.normal.cross(v);
+            }
+        }
+
+
+
+
+        return {
+            Vector,
+            getVector(from: Color, to: Color): Vector {
+                return new Vector(from, [
+                    to.math.x - from.math.x,
+                    to.math.y - from.math.y,
+                    to.math.z - from.math.z
+                ]);
+            },
+            threePointPlane(c1: Color, c2: Color, c3: Color): Plane {
+                const v1 = this.getVector(c1, c2);
+                const v2 = this.getVector(c1, c3);
+
+                const normal = v1.cross(v2);
+
+                return new Plane(c1, normal);
+            },
+            getTransformMatrix(normal: Vector, angle: number): Matrix {
+                const [x, y, z] = normal.rate;
+
+                const cos = Math.cos(angle);
+                const sin = Math.sin(angle);
+
+                return new Matrix([
+                    [cos + x ** 2 * (1 - cos), x * y * (1 - cos) - z * sin, x * z * (1 - cos) + y * sin],
+                    [y * x * (1 - cos) + z * sin, cos + y ** 2 * (1 - cos), y * z * (1 - cos) - x * sin],
+                    [z * x * (1 - cos) - y * sin, z * y * (1 - cos) + x * sin, cos + z ** 2 * (1 - cos)]
+                ]);
+            }
+        }
+    }
+
+
+
+
     static parse(color: string | ColorStr | BootstrapColor):Color {
         // receives a css color string and returns a Color object
         // if the string is not a valid color, returns a Color object with the default color
@@ -732,7 +1178,7 @@ class Color implements Color {
             this.b = c.b;
             this.a = c.a;
         } else {
-            let allowed:boolean = false;
+            // let allowed:boolean = false;
 
             const check: string[] = [
                 'red',
@@ -760,7 +1206,7 @@ class Color implements Color {
                     value = 0;
                 }
 
-                allowed = true;
+                // allowed = true;
             });
 
 
@@ -892,9 +1338,9 @@ class Color implements Color {
     }
 
     get hex() {
-        const r = this.r.toString(16);
-        const g = this.g.toString(16);
-        const b = this.b.toString(16);
+        const r = this.r.toString(16) || '00';
+        const g = this.g.toString(16) || '00';
+        const b = this.b.toString(16) || '00';
 
         return {
             values: [r, g, b],
@@ -993,9 +1439,14 @@ class Color implements Color {
             toColor = new Color(0, 0, 0);
         }
 
-        if (distance < 0 || distance > 1) {
-            console.warn('Distance must be a number between 0 and 1. Defaulting to 0.5');
-            distance = 0.5;
+        if (distance < 0) {
+            console.warn('Distance must be a number greater than 0. Defaulting to 0');
+            distance = 0;
+        }
+
+        if (distance > 1) {
+            console.warn('Distance must be a number less than 1. Defaulting to 1');
+            distance = 1;
         }
 
         const [r1, g1, b1, a1] = this.rgba.values;
@@ -1009,38 +1460,25 @@ class Color implements Color {
         return new Color(r, g, b, a);
     }
 
+
+
+
+
     public linearFade(color:Color, frames: number):Gradient {
-        return new Gradient(...new Array(frames).fill(0).map((_,i) => {
-            return new Color(
-                Math.floor(this.r + (color.r - this.r) / frames * i),
-                Math.floor(this.g + (color.g - this.g) / frames * i),
-                Math.floor(this.b + (color.b - this.b) / frames * i),
-                this.a + (color.a - this.a) / frames * i
-            );
-        }));
+        return Gradient.curve(this, color, (x: number) => x, frames);
     }
 
-    public logarithmicFade(color:Color, frames:number, base:number = 2) {
-        return new Gradient(...new Array(frames).fill(0).map((_,i) => {
-            return new Color(
-                Math.floor(this.r + (color.r - this.r) / Math.pow(base, frames) * Math.pow(base, i)),
-                Math.floor(this.g + (color.g - this.g) / Math.pow(base, frames) * Math.pow(base, i)),
-                Math.floor(this.b + (color.b - this.b) / Math.pow(base, frames) * Math.pow(base, i)),
-                this.a + (color.a - this.a) / Math.pow(base, frames) * Math.pow(base, i)
-            );
-        }));
+    public exponentialFade(color:Color, frames:number, base: number = 2): Gradient {
+        return Gradient.curve(this, color, (x: number) => Math.pow(base, x), frames);
     }
 
-    public exponentialFade(color:Color, frames:number, base:number = 2) {
-        return new Gradient(...new Array(frames).fill(0).map((_,i) => {
-            return new Color(
-                Math.floor(this.r + (color.r - this.r) / Math.pow(base, frames) * Math.pow(base, i)),
-                Math.floor(this.g + (color.g - this.g) / Math.pow(base, frames) * Math.pow(base, i)),
-                Math.floor(this.b + (color.b - this.b) / Math.pow(base, frames) * Math.pow(base, i)),
-                this.a + (color.a - this.a) / Math.pow(base, frames) * Math.pow(base, i)
-            );
-        }));
+    public logarithmicFade(color:Color, frames:number, base: number = 2): Gradient {
+        return Gradient.curve(this, color, (x: number) => Math.log(x) / Math.log(base), frames);
     }
+
+
+
+
 
     public detectContrast(color:Color):number {
         const l1 = 0.2126 * Math.pow(this.r / 255, 2.2) + 0.7152 * Math.pow(this.g / 255, 2.2) + 0.0722 * Math.pow(this.b / 255, 2.2);
@@ -1060,5 +1498,20 @@ class Color implements Color {
 
     public view() {
         this.logText('Color:', this.closestName.name);
+    }
+
+
+
+
+
+
+
+    get math() {
+        const p = this;
+        return {
+            x: p.r / 255,
+            y: p.g / 255,
+            z: p.b / 255,
+        }
     }
 };
