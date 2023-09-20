@@ -11,6 +11,213 @@ interface Color {
     toString(): string;
 };
 
+type ColorStr = 
+"aliceblue"      |
+"antiquewhite"|
+"aqua"|
+"aquamarine"|
+"azure"|
+"beige"|
+"bisque"|
+"black"|
+"blanchedalmond"|
+"blue" |
+"blueviolet"|
+"brown"|
+"burlywood"|
+"cadetblue"|
+"chartreuse"|
+"chocolate"|
+"coral"|
+"cornflowerblue"|
+"cornsilk"|
+"crimson"|
+"cyan"|
+"darkblue"|
+"darkcyan"|
+"darkgoldenrod"|
+"darkgray"|
+"darkgreen"|
+"darkgrey"|
+"darkkhaki"|
+"darkmagenta"|
+"darkolivegreen"|
+"darkorange"|
+"darkorchid"|
+"darkred"|
+"darksalmon"|
+"darkseagreen"|
+"darkslateblue"|
+"darkslategray"|
+"darkslategrey"|
+"darkturquoise"|
+"darkviolet"|
+"deeppink"|
+"deepskyblue"|
+"dimgray"|
+"dimgrey"|
+"dodgerblue"|
+"firebrick"|
+"floralwhite"|
+"forestgreen"|
+"fuchsia"|
+"gainsboro"|
+"ghostwhite"|
+"gold"|
+"goldenrod"|
+"gray"|
+"green"|
+"greenyellow"|
+"grey"|
+"honeydew"|
+"hotpink"|
+"indianred"|
+"indigo"|
+"ivory"|
+"khaki"|
+"lavender"|
+"lavenderblush"|
+"lawngreen"|
+"lemonchiffon"|
+"lightblue"|
+"lightcoral"|
+"lightcyan"|
+"lightgoldenrodyellow"|
+"lightgray"|
+"lightgreen"|
+"lightgrey"|
+"lightpink"|
+"lightsalmon"|
+"lightseagreen"|
+"lightskyblue"|
+"lightslategray"|
+"lightslategrey"|
+"lightsteelblue"|
+"lightyellow"|
+"lime"|
+"limegreen"|
+"linen"|
+"magenta"|
+"maroon"|
+"mediumaquamarine"|
+"mediumblue"|
+"mediumorchid"|
+"mediumpurple"|
+"mediumseagreen"|
+"mediumslateblue"|
+"mediumspringgreen"|
+"mediumturquoise"|
+"mediumvioletred"|
+"midnightblue"|
+"mintcream"|
+"mistyrose"|
+"moccasin"|
+"navajowhite"|
+"navy"|
+"oldlace"|
+"olive"|
+"olivedrab"|
+"orange"|
+"orangered"|
+"orchid"|
+"palegoldenrod"|
+"palegreen"|
+"paleturquoise"|
+"palevioletred"|
+"papayawhip"|
+"peachpuff"|
+"peru"|
+"pink"|
+"plum"|
+"powderblue"|
+"purple"|
+"red"|
+"rosybrown"|
+"royalblue"|
+"saddlebrown"|
+"salmon"|
+"sandybrown"|
+"seagreen"|
+"seashell"|
+"sienna"|
+"silver"|
+"skyblue"|
+"slateblue"|
+"slategray"|
+"slategrey"|
+"snow"|
+"springgreen"|
+"steelblue"|
+"tan"|
+"teal"|
+"thistle"|
+"tomato"|
+"transparent"|
+"turquoise"|
+"violet"|
+"wheat"|
+"white"|
+"whitesmoke"|
+"yellow"|
+"yellowgreen"|
+"rebeccapurple";
+
+
+
+type BootstrapColor = 
+"primary"|
+"secondary"|
+"success"|
+"info"|
+"warning"|
+"danger"|
+"light"|
+"dark"|
+"indigo"|
+"indigo-light"|
+"indigo-dark"|
+"teal"|
+"teal-light"|
+"teal-dark"|
+"orange"|
+"orange-light"|
+"orange-dark"|
+"pink"|
+"pink-light"|
+"pink-dark"|
+"purple"|
+"purple-light"|
+"purple-dark"|
+"navy"|
+"navy-light"|
+"navy-dark"|
+"yellow"|
+"yellow-light"|
+"yellow-dark"|
+"lime"|
+"lime-light"|
+"lime-dark"|
+"gray"|
+"gray-light"|
+"gray-dark"|
+"brown"|
+"brown-light"|
+"brown-dark"|
+"grape"|
+"grape-light"|
+"grape-dark"|
+"vermillion"|
+"vermillion-light"|
+"vermillion-dark"|
+"steel"|
+"steel-light"|
+"steel-dark"|
+"green"|
+"green-light"|
+"green-dark";
+
+
+
 type colorArray = [number, number, number, number];
 
 type colors = {
@@ -24,9 +231,14 @@ type ClosestColor = {
 };
 
 class Color implements Color {
-    private static parse(color: string):Color {
+    static parse(color: string | ColorStr | BootstrapColor):Color {
         // receives a css color string and returns a Color object
         // if the string is not a valid color, returns a Color object with the default color
+
+        const bs = Color.fromBootstrap(color as BootstrapColor);
+        if (bs) return bs;
+        const cl = Color.fromName(color as ColorStr);
+        if (cl) return cl;
 
         // remove spaces
         color = color.replace(/\s/g, '');
@@ -57,7 +269,7 @@ class Color implements Color {
         }
     }
 
-    private static fromHex(hex: string) {
+    static fromHex(hex: string): Color {
         const r = parseInt(hex.slice(1, 3), 16);
         const g = parseInt(hex.slice(3, 5), 16);
         const b = parseInt(hex.slice(5, 7), 16);
@@ -67,11 +279,11 @@ class Color implements Color {
         return new Color(r, g, b, a);
     }
 
-    private static fromRGB(r: number, g: number, b: number, a?: number) {
+    static fromRGB(r: number, g: number, b: number, a?: number): Color {
         return new Color(r, g, b, a);
     }
 
-    private static fromHSL(h: number, s: number, l: number, a?: number) {
+    static fromHSL(h: number, s: number, l: number, a?: number): Color {
         const params = ['hue', 'saturation', 'lightness'];
         [h,s,l].forEach((v, i) => {
             if (isNaN(v)) throw new Error(`Invalid ${params[i]}, ${v} is not a parsable number`);
@@ -113,18 +325,20 @@ class Color implements Color {
         return new Color(r * 255, g * 255, b * 255, a);
     }
 
-    static random() {
+    static random(): Color {
         return new Color(Math.random() * 255, Math.random() * 255, Math.random() * 255);
     }
 
-    static fromName(name: string):Color|undefined {
-        const c = Color.colorNames[name.toLowerCase()];
+    static fromName<T extends ColorStr>(name: T):Color;
+    static fromName(name: ColorStr):Color|undefined {
+        const c = Color.colors[name];
 
         if (c) return new Color(...c);
     }
 
-    static fromBootstrap(name: string):Color|undefined {
-        const c = Color.bootstrap[name.toLowerCase()];
+    static fromBootstrap<T extends BootstrapColor>(name: T):Color;
+    static fromBootstrap(name: BootstrapColor):Color | undefined {
+        const c = Color.bootstrap[name];
 
         if (c) return new Color(...c);
     }
@@ -163,7 +377,9 @@ class Color implements Color {
     /**
      * All colors and their RGB values
      */
-    static get colorNames():colors {
+    static get colors(): {
+        [key in ColorStr]: colorArray;
+    } {
         return {
             "aliceblue": [240, 248, 255, 1],
             "antiquewhite": [250, 235, 215, 1],
@@ -320,7 +536,9 @@ class Color implements Color {
     /**
      * Get the bootstrap colors
      */
-    static get bootstrap():colors {
+    static get bootstrap(): {
+        [key in BootstrapColor]: colorArray;
+    } {
         return {
             "primary": [0, 123, 255, 1],
             "secondary": [108, 117, 125, 1],
@@ -527,7 +745,7 @@ class Color implements Color {
     /**
      * @returns {Object} The closest bootstrap color and its distance
      */
-    get closestBootstrap():object {
+    get closestBootstrap():ClosestColor {
         const { bootstrap } = Color;
         const [r, g, b] = this.rgb.values;
 
@@ -561,7 +779,6 @@ class Color implements Color {
     public clone(): Color {
         return new Color(this.r, this.g, this.b, this.a);
     }
-
 
     get rgb() {
         return {
@@ -720,47 +937,32 @@ class Color implements Color {
 
 
 
-    // global setters
-
-    set hue(hue:number) {
-        this.hsl.setHue(hue);
-    }
-
-    set saturation(saturation:number) {
-        this.hsl.setSaturation(saturation);
-    }
-
-    set lightness(lightness:number) {
-        this.hsl.setLightness(lightness);
-    }
-
-
-
-
-
-
     public setAlpha(value: number) {
         this.a = value;
         return this;
     }
 
-    public toString(type?: 'hex' | 'rgb' | 'hsl'):string {
+    public toString(type: 'hex' | 'hexa' | 'hsl' | 'hsla' | 'rgb' | 'rgba' = 'rgba'): string {
         switch (type) {
             case 'hex':
+                return this.hex.toString();
+            case 'hexa':
                 return this.hexa.toString();
-            case 'rgb':
-                return this.rgba.toString();
             case 'hsl':
+                return this.hsl.toString();
+            case 'hsla':
                 return this.hsla.toString();
-            default:
-                return this.hexa.toString();
-        }
+            case 'rgb':
+                return this.rgb.toString();
+            case 'rgba':
+                return this.rgba.toString();
+        };
     }
 
 
     // generating colors
 
-    public compliment(num:number, gradient:boolean = false):Color[]|Gradient {
+    public compliment(num:number): Gradient {
         num = Math.floor(num);
         if (num < 2) num = 2;
 
@@ -772,14 +974,19 @@ class Color implements Color {
 
         const g = [this, ...hues.map(h => Color.fromHSL(h, hsl[1], hsl[2], this.a))];
 
-        return gradient ? new Gradient(...g) : g;
+        return new Gradient(...g);
     }
 
-    public analogous():Color[] {
+    public analogous():[Color, Color, Color] {
         const hsl = this.hsl.values;
-        const hues = [hsl[0] - (30 / 360), hsl[0] + (30 / 360)];
+        const hues: [number, number] = [hsl[0] - (30 / 360), hsl[0] + (30 / 360)];
 
-        return [this, ...hues.map(h => Color.fromHSL(h, hsl[1], hsl[2], this.a))];
+        const [h1, h2] = hues.map(h => Color.fromHSL(h, hsl[1], hsl[2], this.a));
+        return [
+            this,
+            h1,
+            h2
+        ];
     }
 
     public interpolate(toColor: Color, distance: number = 0.5):Color {
@@ -841,8 +1048,6 @@ class Color implements Color {
             );
         }));
     }
-
-
 
     public detectContrast(color:Color):number {
         const l1 = 0.2126 * Math.pow(this.r / 255, 2.2) + 0.7152 * Math.pow(this.g / 255, 2.2) + 0.0722 * Math.pow(this.b / 255, 2.2);
