@@ -24,7 +24,7 @@ type ClosestColor = {
 };
 
 class Color implements Color {
-    static parse(color: string):Color {
+    private static parse(color: string):Color {
         // receives a css color string and returns a Color object
         // if the string is not a valid color, returns a Color object with the default color
 
@@ -34,6 +34,8 @@ class Color implements Color {
         // hex
         if (color[0] === '#') return Color.fromHex(color);
         else {
+            const name = Color.fromName(color);
+            if (name) return name;
 
             // get numbers between parentheses
             let parsed = color.match(/\(([^)]+)\)/);
@@ -55,7 +57,7 @@ class Color implements Color {
         }
     }
 
-    static fromHex(hex: string) {
+    private static fromHex(hex: string) {
         const r = parseInt(hex.slice(1, 3), 16);
         const g = parseInt(hex.slice(3, 5), 16);
         const b = parseInt(hex.slice(5, 7), 16);
@@ -65,11 +67,11 @@ class Color implements Color {
         return new Color(r, g, b, a);
     }
 
-    static fromRGB(r: number, g: number, b: number, a?: number) {
+    private static fromRGB(r: number, g: number, b: number, a?: number) {
         return new Color(r, g, b, a);
     }
 
-    static fromHSL(h: number, s: number, l: number, a?: number) {
+    private static fromHSL(h: number, s: number, l: number, a?: number) {
         const params = ['hue', 'saturation', 'lightness'];
         [h,s,l].forEach((v, i) => {
             if (isNaN(v)) throw new Error(`Invalid ${params[i]}, ${v} is not a parsable number`);
@@ -116,7 +118,7 @@ class Color implements Color {
     }
 
     static fromName(name: string):Color|undefined {
-        const c = Color.colors[name.toLowerCase()];
+        const c = Color.colorNames[name.toLowerCase()];
 
         if (c) return new Color(...c);
     }
@@ -161,7 +163,7 @@ class Color implements Color {
     /**
      * All colors and their RGB values
      */
-    static get colors():colors {
+    static get colorNames():colors {
         return {
             "aliceblue": [240, 248, 255, 1],
             "antiquewhite": [250, 235, 215, 1],
@@ -429,6 +431,65 @@ class Color implements Color {
         }
     }
 
+    public r: number;
+    public g: number;
+    public b: number;
+    public a: number;
+
+    constructor(redOrString: number | string, green?: number, blue?: number, alpha?: number) {
+        if (typeof redOrString === 'string') {
+            if (green !== undefined || blue !== undefined || alpha !== undefined) {
+                throw new Error('Invalid arguments. If the first argument is a string, the other arguments must be undefined.');
+            }
+
+            const c = Color.parse(redOrString);
+
+            this.r = c.r;
+            this.g = c.g;
+            this.b = c.b;
+            this.a = c.a;
+        } else {
+            let allowed:boolean = false;
+
+            const check: string[] = [
+                'red',
+                'green',
+                'blue',
+                'alpha'
+            ];
+
+            [
+                redOrString,
+                green,
+                blue,
+                alpha
+            ].forEach((value, index) => {
+                if (value === undefined) return;
+                if (isNaN(value)) throw new Error(`Invalid ${check[index]}, ${value} is not a parsable number`);
+
+                if (value > 255) {
+                    console.warn(`Invalid ${check[index]}, ${value} is greater than 255. It will be set to 255`);
+                    value = 255;
+                }
+
+                if (value < 0) {
+                    console.warn(`Invalid ${check[index]}, ${value} is less than 0. It will be set to 0`);
+                    value = 0;
+                }
+
+                allowed = true;
+            });
+
+
+            alpha = alpha || 1;
+
+            this.r = redOrString;
+            this.g = green || 0;
+            this.b = blue || 0;
+            this.a = alpha;
+        }
+    }
+
     /**
      * @returns {Object} The closest color name and its distance
      * @property {string} name The name of the closest color
@@ -436,7 +497,7 @@ class Color implements Color {
      * @property {Color} color The closest color
      */
     get closestName():ClosestColor {
-        const { colors } = Color;
+        const { colorNames: colors } = Color;
         const [r, g, b] = this.rgb.values;
 
         return Object.entries(colors).reduce((closest, [name, rgb]) => {
@@ -501,59 +562,6 @@ class Color implements Color {
         return new Color(this.r, this.g, this.b, this.a);
     }
 
-    constructor(redOrString: number | string, green?: number, blue?: number, alpha?: number) {
-        if (typeof redOrString === 'string') {
-            if (green !== undefined || blue !== undefined || alpha !== undefined) {
-                throw new Error('Invalid arguments. If the first argument is a string, the other arguments must be undefined.');
-            }
-
-            const c = Color.parse(redOrString);
-
-            this.r = c.r;
-            this.g = c.g;
-            this.b = c.b;
-            this.a = c.a;
-        } else {
-            let allowed:boolean = false;
-
-            const check: string[] = [
-                'red',
-                'green',
-                'blue',
-                'alpha'
-            ];
-
-            [
-                redOrString,
-                green,
-                blue,
-                alpha
-            ].forEach((value, index) => {
-                if (value === undefined) return;
-                if (isNaN(value)) throw new Error(`Invalid ${check[index]}, ${value} is not a parsable number`);
-
-                if (value > 255) {
-                    console.warn(`Invalid ${check[index]}, ${value} is greater than 255. It will be set to 255`);
-                    value = 255;
-                }
-
-                if (value < 0) {
-                    console.warn(`Invalid ${check[index]}, ${value} is less than 0. It will be set to 0`);
-                    value = 0;
-                }
-
-                allowed = true;
-            });
-
-
-            alpha = alpha || 1;
-
-            this.r = redOrString;
-            this.g = green || 0;
-            this.b = blue || 0;
-            this.a = alpha;
-        }
-    }
 
     get rgb() {
         return {
@@ -736,8 +744,17 @@ class Color implements Color {
         return this;
     }
 
-    public toString():string {
-        return `rgba(${this.r}, ${this.g}, ${this.b}, ${this.a})`;
+    public toString(type?: 'hex' | 'rgb' | 'hsl'):string {
+        switch (type) {
+            case 'hex':
+                return this.hexa.toString();
+            case 'rgb':
+                return this.rgba.toString();
+            case 'hsl':
+                return this.hsla.toString();
+            default:
+                return this.hexa.toString();
+        }
     }
 
 
