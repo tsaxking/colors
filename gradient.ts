@@ -44,6 +44,14 @@ class Gradient {
 
 
 
+    // static spline(...colors: Color[]) {
+    //     // generate fx, fy, and fz
+
+
+    // }
+
+
+
     static parametric(fr: (t: number) => number, fg: (t: number) => number, fb: (t: number) => number, frames: number): Gradient {
         return new Gradient(...Array(frames).fill(0).map((_, i) => {
             const t = i / frames;

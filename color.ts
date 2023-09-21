@@ -1512,6 +1512,7 @@ class Color implements Color {
             x: p.r / 255,
             y: p.g / 255,
             z: p.b / 255,
+            point: [p.r / 255, p.g / 255, p.b / 255] as [number, number, number]
         }
     }
 };
