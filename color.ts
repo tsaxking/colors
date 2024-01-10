@@ -70,7 +70,7 @@ interface Color {
      * @returns {string}
      */
     toString(): string;
-};
+}
 
 /**
  * All the color names
@@ -78,158 +78,156 @@ interface Color {
  *
  * @typedef {ColorStr}
  */
-type ColorStr = 
-    "aliceblue"|
-    "antiquewhite"|
-    "aqua"|
-    "aquamarine"|
-    "azure"|
-    "beige"|
-    "bisque"|
-    "black"|
-    "blanchedalmond"|
-    "blue" |
-    "blueviolet"|
-    "brown"|
-    "burlywood"|
-    "cadetblue"|
-    "chartreuse"|
-    "chocolate"|
-    "coral"|
-    "cornflowerblue"|
-    "cornsilk"|
-    "crimson"|
-    "cyan"|
-    "darkblue"|
-    "darkcyan"|
-    "darkgoldenrod"|
-    "darkgray"|
-    "darkgreen"|
-    "darkgrey"|
-    "darkkhaki"|
-    "darkmagenta"|
-    "darkolivegreen"|
-    "darkorange"|
-    "darkorchid"|
-    "darkred"|
-    "darksalmon"|
-    "darkseagreen"|
-    "darkslateblue"|
-    "darkslategray"|
-    "darkslategrey"|
-    "darkturquoise"|
-    "darkviolet"|
-    "deeppink"|
-    "deepskyblue"|
-    "dimgray"|
-    "dimgrey"|
-    "dodgerblue"|
-    "firebrick"|
-    "floralwhite"|
-    "forestgreen"|
-    "fuchsia"|
-    "gainsboro"|
-    "ghostwhite"|
-    "gold"|
-    "goldenrod"|
-    "gray"|
-    "green"|
-    "greenyellow"|
-    "grey"|
-    "honeydew"|
-    "hotpink"|
-    "indianred"|
-    "indigo"|
-    "ivory"|
-    "khaki"|
-    "lavender"|
-    "lavenderblush"|
-    "lawngreen"|
-    "lemonchiffon"|
-    "lightblue"|
-    "lightcoral"|
-    "lightcyan"|
-    "lightgoldenrodyellow"|
-    "lightgray"|
-    "lightgreen"|
-    "lightgrey"|
-    "lightpink"|
-    "lightsalmon"|
-    "lightseagreen"|
-    "lightskyblue"|
-    "lightslategray"|
-    "lightslategrey"|
-    "lightsteelblue"|
-    "lightyellow"|
-    "lime"|
-    "limegreen"|
-    "linen"|
-    "magenta"|
-    "maroon"|
-    "mediumaquamarine"|
-    "mediumblue"|
-    "mediumorchid"|
-    "mediumpurple"|
-    "mediumseagreen"|
-    "mediumslateblue"|
-    "mediumspringgreen"|
-    "mediumturquoise"|
-    "mediumvioletred"|
-    "midnightblue"|
-    "mintcream"|
-    "mistyrose"|
-    "moccasin"|
-    "navajowhite"|
-    "navy"|
-    "oldlace"|
-    "olive"|
-    "olivedrab"|
-    "orange"|
-    "orangered"|
-    "orchid"|
-    "palegoldenrod"|
-    "palegreen"|
-    "paleturquoise"|
-    "palevioletred"|
-    "papayawhip"|
-    "peachpuff"|
-    "peru"|
-    "pink"|
-    "plum"|
-    "powderblue"|
-    "purple"|
-    "red"|
-    "rosybrown"|
-    "royalblue"|
-    "saddlebrown"|
-    "salmon"|
-    "sandybrown"|
-    "seagreen"|
-    "seashell"|
-    "sienna"|
-    "silver"|
-    "skyblue"|
-    "slateblue"|
-    "slategray"|
-    "slategrey"|
-    "snow"|
-    "springgreen"|
-    "steelblue"|
-    "tan"|
-    "teal"|
-    "thistle"|
-    "tomato"|
-    "transparent"|
-    "turquoise"|
-    "violet"|
-    "wheat"|
-    "white"|
-    "whitesmoke"|
-    "yellow"|
-    "yellowgreen"|
-    "rebeccapurple";
-
-
+type ColorStr =
+    | "aliceblue"
+    | "antiquewhite"
+    | "aqua"
+    | "aquamarine"
+    | "azure"
+    | "beige"
+    | "bisque"
+    | "black"
+    | "blanchedalmond"
+    | "blue"
+    | "blueviolet"
+    | "brown"
+    | "burlywood"
+    | "cadetblue"
+    | "chartreuse"
+    | "chocolate"
+    | "coral"
+    | "cornflowerblue"
+    | "cornsilk"
+    | "crimson"
+    | "cyan"
+    | "darkblue"
+    | "darkcyan"
+    | "darkgoldenrod"
+    | "darkgray"
+    | "darkgreen"
+    | "darkgrey"
+    | "darkkhaki"
+    | "darkmagenta"
+    | "darkolivegreen"
+    | "darkorange"
+    | "darkorchid"
+    | "darkred"
+    | "darksalmon"
+    | "darkseagreen"
+    | "darkslateblue"
+    | "darkslategray"
+    | "darkslategrey"
+    | "darkturquoise"
+    | "darkviolet"
+    | "deeppink"
+    | "deepskyblue"
+    | "dimgray"
+    | "dimgrey"
+    | "dodgerblue"
+    | "firebrick"
+    | "floralwhite"
+    | "forestgreen"
+    | "fuchsia"
+    | "gainsboro"
+    | "ghostwhite"
+    | "gold"
+    | "goldenrod"
+    | "gray"
+    | "green"
+    | "greenyellow"
+    | "grey"
+    | "honeydew"
+    | "hotpink"
+    | "indianred"
+    | "indigo"
+    | "ivory"
+    | "khaki"
+    | "lavender"
+    | "lavenderblush"
+    | "lawngreen"
+    | "lemonchiffon"
+    | "lightblue"
+    | "lightcoral"
+    | "lightcyan"
+    | "lightgoldenrodyellow"
+    | "lightgray"
+    | "lightgreen"
+    | "lightgrey"
+    | "lightpink"
+    | "lightsalmon"
+    | "lightseagreen"
+    | "lightskyblue"
+    | "lightslategray"
+    | "lightslategrey"
+    | "lightsteelblue"
+    | "lightyellow"
+    | "lime"
+    | "limegreen"
+    | "linen"
+    | "magenta"
+    | "maroon"
+    | "mediumaquamarine"
+    | "mediumblue"
+    | "mediumorchid"
+    | "mediumpurple"
+    | "mediumseagreen"
+    | "mediumslateblue"
+    | "mediumspringgreen"
+    | "mediumturquoise"
+    | "mediumvioletred"
+    | "midnightblue"
+    | "mintcream"
+    | "mistyrose"
+    | "moccasin"
+    | "navajowhite"
+    | "navy"
+    | "oldlace"
+    | "olive"
+    | "olivedrab"
+    | "orange"
+    | "orangered"
+    | "orchid"
+    | "palegoldenrod"
+    | "palegreen"
+    | "paleturquoise"
+    | "palevioletred"
+    | "papayawhip"
+    | "peachpuff"
+    | "peru"
+    | "pink"
+    | "plum"
+    | "powderblue"
+    | "purple"
+    | "red"
+    | "rosybrown"
+    | "royalblue"
+    | "saddlebrown"
+    | "salmon"
+    | "sandybrown"
+    | "seagreen"
+    | "seashell"
+    | "sienna"
+    | "silver"
+    | "skyblue"
+    | "slateblue"
+    | "slategray"
+    | "slategrey"
+    | "snow"
+    | "springgreen"
+    | "steelblue"
+    | "tan"
+    | "teal"
+    | "thistle"
+    | "tomato"
+    | "transparent"
+    | "turquoise"
+    | "violet"
+    | "wheat"
+    | "white"
+    | "whitesmoke"
+    | "yellow"
+    | "yellowgreen"
+    | "rebeccapurple";
 
 /**
  * All the bootstrap colors
@@ -237,59 +235,57 @@ type ColorStr =
  *
  * @typedef {BootstrapColor}
  */
-type BootstrapColor = 
-    "primary"|
-    "secondary"|
-    "success"|
-    "info"|
-    "warning"|
-    "danger"|
-    "light"|
-    "dark"|
-    "indigo"|
-    "indigo-light"|
-    "indigo-dark"|
-    "teal"|
-    "teal-light"|
-    "teal-dark"|
-    "orange"|
-    "orange-light"|
-    "orange-dark"|
-    "pink"|
-    "pink-light"|
-    "pink-dark"|
-    "purple"|
-    "purple-light"|
-    "purple-dark"|
-    "navy"|
-    "navy-light"|
-    "navy-dark"|
-    "yellow"|
-    "yellow-light"|
-    "yellow-dark"|
-    "lime"|
-    "lime-light"|
-    "lime-dark"|
-    "gray"|
-    "gray-light"|
-    "gray-dark"|
-    "brown"|
-    "brown-light"|
-    "brown-dark"|
-    "grape"|
-    "grape-light"|
-    "grape-dark"|
-    "vermillion"|
-    "vermillion-light"|
-    "vermillion-dark"|
-    "steel"|
-    "steel-light"|
-    "steel-dark"|
-    "green"|
-    "green-light"|
-    "green-dark";
-
-
+type BootstrapColor =
+    | "primary"
+    | "secondary"
+    | "success"
+    | "info"
+    | "warning"
+    | "danger"
+    | "light"
+    | "dark"
+    | "indigo"
+    | "indigo-light"
+    | "indigo-dark"
+    | "teal"
+    | "teal-light"
+    | "teal-dark"
+    | "orange"
+    | "orange-light"
+    | "orange-dark"
+    | "pink"
+    | "pink-light"
+    | "pink-dark"
+    | "purple"
+    | "purple-light"
+    | "purple-dark"
+    | "navy"
+    | "navy-light"
+    | "navy-dark"
+    | "yellow"
+    | "yellow-light"
+    | "yellow-dark"
+    | "lime"
+    | "lime-light"
+    | "lime-dark"
+    | "gray"
+    | "gray-light"
+    | "gray-dark"
+    | "brown"
+    | "brown-light"
+    | "brown-dark"
+    | "grape"
+    | "grape-light"
+    | "grape-dark"
+    | "vermillion"
+    | "vermillion-light"
+    | "vermillion-dark"
+    | "steel"
+    | "steel-light"
+    | "steel-dark"
+    | "green"
+    | "green-light"
+    | "green-dark";
 
 /**
  * A color array of r,g,b,a
@@ -306,8 +302,8 @@ type colorArray = [number, number, number, number];
  * @typedef {colors}
  */
 type colors = {
-    [key: string]:colorArray;
-}
+    [key: string]: colorArray;
+};
 
 /**
  * Closest color object containing the name, distance, and color
@@ -321,30 +317,6 @@ type ClosestColor = {
     color: Color;
 };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /**
  * A color class that can be used to parse, modify, and convert colors
  * @date 1/10/2024 - 2:49:15 PM
@@ -354,8 +326,6 @@ type ClosestColor = {
  * @implements {Color}
  */
 class Color implements Color {
-
-
     /**
      * Math functions
      * @date 1/10/2024 - 2:49:15 PM
@@ -368,7 +338,6 @@ class Color implements Color {
         class Matrix {
             constructor(public matrix: number[][]) {}
 
-
             add(m: Matrix): Matrix {
                 const a = this.matrix;
                 const b = m.matrix;
@@ -379,7 +348,9 @@ class Color implements Color {
                 const bCols = b[0].length;
 
                 if (aRows !== bRows || aCols !== bCols) {
-                    throw new Error('Matrix A rows must match matrix B rows and matrix A columns must match matrix B columns');
+                    throw new Error(
+                        "Matrix A rows must match matrix B rows and matrix A columns must match matrix B columns",
+                    );
                 }
 
                 const result = new Array(aRows);
@@ -395,7 +366,6 @@ class Color implements Color {
                 return new Matrix(result);
             }
 
-
             multiply(m: Matrix): Matrix {
                 const a = this.matrix;
                 const b = m.matrix;
@@ -406,7 +376,9 @@ class Color implements Color {
                 const bCols = b[0].length;
 
                 if (aCols !== bRows) {
-                    throw new Error('Matrix A columns must match matrix B rows');
+                    throw new Error(
+                        "Matrix A columns must match matrix B rows",
+                    );
                 }
 
                 const result = new Array(aRows);
@@ -426,10 +398,8 @@ class Color implements Color {
                 return new Matrix(result);
             }
 
-
-
             scale(n: number): Matrix {
-                const m = this.matrix.map(row => row.map(n2 => n2 * n));
+                const m = this.matrix.map((row) => row.map((n2) => n2 * n));
                 return new Matrix(m);
             }
 
@@ -440,30 +410,27 @@ class Color implements Color {
                     scale(n: number): Matrix {
                         m.matrix = m.scale(n).matrix;
                         return m;
-                    }
-                }
+                    },
+                };
             }
 
             multiplyVector(v: Vector): Vector {
                 if (this.matrix.length !== 3 || this.matrix[0].length !== 3) {
-                    throw new Error('Matrix must be 3x3');
+                    throw new Error("Matrix must be 3x3");
                 }
 
-                const x = this.matrix[0][0] * v.x.magnitude + 
-                          this.matrix[0][1] * v.y.magnitude + 
-                          this.matrix[0][2] * v.z.magnitude;
-                const y = this.matrix[1][0] * v.x.magnitude + 
-                          this.matrix[1][1] * v.y.magnitude + 
-                          this.matrix[1][2] * v.z.magnitude;
-                const z = this.matrix[2][0] * v.x.magnitude + 
-                          this.matrix[2][1] * v.y.magnitude + 
-                          this.matrix[2][2] * v.z.magnitude;
+                const x = this.matrix[0][0] * v.x.magnitude +
+                    this.matrix[0][1] * v.y.magnitude +
+                    this.matrix[0][2] * v.z.magnitude;
+                const y = this.matrix[1][0] * v.x.magnitude +
+                    this.matrix[1][1] * v.y.magnitude +
+                    this.matrix[1][2] * v.z.magnitude;
+                const z = this.matrix[2][0] * v.x.magnitude +
+                    this.matrix[2][1] * v.y.magnitude +
+                    this.matrix[2][2] * v.z.magnitude;
 
                 return new Vector(v.point, [x, y, z]);
             }
-
-
-
         }
 
         class Matrix1D {
@@ -477,7 +444,7 @@ class Color implements Color {
                 const bRows = b.length;
 
                 if (aRows !== bRows) {
-                    throw new Error('Matrix A rows must match matrix B rows');
+                    throw new Error("Matrix A rows must match matrix B rows");
                 }
 
                 const result = new Array(aRows);
@@ -497,7 +464,7 @@ class Color implements Color {
                 const bRows = b.length;
 
                 if (aRows !== bRows) {
-                    throw new Error('Matrix A rows must match matrix B rows');
+                    throw new Error("Matrix A rows must match matrix B rows");
                 }
 
                 const result = new Array(aRows);
@@ -510,7 +477,7 @@ class Color implements Color {
             }
 
             scale(n: number): Matrix1D {
-                const m = this.matrix.map(n2 => n2 * n);
+                const m = this.matrix.map((n2) => n2 * n);
                 return new Matrix1D(m);
             }
 
@@ -521,67 +488,66 @@ class Color implements Color {
                     scale(n: number): Matrix1D {
                         m.matrix = m.scale(n).matrix;
                         return m;
-                    }
-                }
+                    },
+                };
             }
         }
 
-
         class Vector {
-            constructor(public point: Color, public rate: [number, number, number]) {}
-
+            constructor(
+                public point: Color,
+                public rate: [number, number, number],
+            ) {}
 
             get magnitude(): number {
-                return Math.sqrt(this.x.magnitude ** 2 + this.y.magnitude ** 2 + this.z.magnitude ** 2);
+                return Math.sqrt(
+                    this.x.magnitude ** 2 + this.y.magnitude ** 2 +
+                        this.z.magnitude ** 2,
+                );
             }
-
-
 
             get x(): {
                 ft: (x: number) => number;
                 pos: number;
-                magnitude: number
+                magnitude: number;
             } {
                 const v = this;
                 return {
                     ft: (t: number) => this.rate[0] * t,
                     pos: v.point.math.x,
-                    magnitude: this.rate[0]
-                }
+                    magnitude: this.rate[0],
+                };
             }
 
             get y(): {
                 ft: (t: number) => number;
                 pos: number;
-                magnitude: number
+                magnitude: number;
             } {
                 const v = this;
                 return {
                     ft: (x: number) => this.rate[1] * x,
                     pos: v.point.math.y,
-                    magnitude: this.rate[1]
-                }
+                    magnitude: this.rate[1],
+                };
             }
 
             get z(): {
                 ft: (t: number) => number;
                 pos: number;
-                magnitude: number
+                magnitude: number;
             } {
                 const v = this;
                 return {
                     ft: (x: number) => this.rate[2] * x,
                     pos: v.point.math.z,
-                    magnitude: this.rate[2]
-                }
+                    magnitude: this.rate[2],
+                };
             }
-
 
             angle(v: Vector): number {
                 return Math.acos(this.dot(v) / (this.magnitude * v.magnitude));
             }
-
-
 
             cross(v: Vector): Vector {
                 const ax = this.x.magnitude;
@@ -595,22 +561,22 @@ class Color implements Color {
                 return new Vector(this.point, [
                     ay * bz - az * by,
                     az * bx - ax * bz,
-                    ax * by - ay * bx
+                    ax * by - ay * bx,
                 ]);
             }
 
             dot(v: Vector): number {
-                return this.rate[0] * v.rate[0] + this.rate[1] * v.rate[1] + this.rate[2] * v.rate[2];
+                return this.rate[0] * v.rate[0] + this.rate[1] * v.rate[1] +
+                    this.rate[2] * v.rate[2];
             }
 
             add(v: Vector): Vector {
                 return new Vector(this.point, [
                     this.rate[0] + v.rate[0],
                     this.rate[1] + v.rate[1],
-                    this.rate[2] + v.rate[2]
+                    this.rate[2] + v.rate[2],
                 ]);
             }
-
 
             intersect(v: Vector): Color | undefined {
                 // magnitude of the cross product is the volume of the parallelepiped
@@ -633,8 +599,6 @@ class Color implements Color {
                 const b2y = v.y.pos;
                 const b2z = v.z.pos;
 
-
-
                 // parametric components
                 const fx1 = (t: number) => m1x * t + b1x;
                 const fy1 = (t: number) => m1y * t + b1y;
@@ -655,65 +619,66 @@ class Color implements Color {
                 const equal = (tolerance: number) => (a: number, b: number) => {
                     const e = Math.abs(a - b) <= tolerance;
                     return e;
-                }
+                };
 
                 type Point = {
                     x: number;
                     y: number;
                     z: number;
-                }
+                };
 
+                const pointEqual =
+                    (tolerance: number) => (a: Point, b: Point) => {
+                        const e = equal(tolerance);
+                        const x = e(a.x, b.x);
+                        const y = e(a.y, b.y);
+                        const z = e(a.z, b.z);
 
-                const pointEqual = (tolerance: number) => (a: Point, b: Point) => {
-                    const e = equal(tolerance);
-                    const x = e(a.x, b.x);
-                    const y = e(a.y, b.y);
-                    const z = e(a.z, b.z);
+                        console.log(a, b, x, y, z);
 
-                    console.log(a, b, x, y, z);
-
-                    return x && y && z;
-                }
-
+                        return x && y && z;
+                    };
 
                 try {
                     return new Color(
                         x1 * 255,
                         y1 * 255,
-                        z1 * 255
+                        z1 * 255,
                     );
                 } catch (e) {
-                    console.log('Colors do not intersect');
+                    console.log("Colors do not intersect");
                 }
             }
-
 
             intersectPlane(plane: Plane): Color {
                 const normal = plane.normal;
                 const point = plane.point;
 
-                const t = (normal.x.magnitude * (point.r - this.point.r) + normal.y.magnitude * (point.g - this.point.g) + normal.z.magnitude * (point.b - this.point.b)) / (normal.x.magnitude * this.rate[0] + normal.y.magnitude * this.rate[1] + normal.z.magnitude * this.rate[2]);
+                const t = (normal.x.magnitude * (point.r - this.point.r) +
+                    normal.y.magnitude * (point.g - this.point.g) +
+                    normal.z.magnitude * (point.b - this.point.b)) /
+                    (normal.x.magnitude * this.rate[0] +
+                        normal.y.magnitude * this.rate[1] +
+                        normal.z.magnitude * this.rate[2]);
 
-                return new Color(this.point.r + this.rate[0] * t, this.point.g + this.rate[1] * t, this.point.b + this.rate[2] * t);
+                return new Color(
+                    this.point.r + this.rate[0] * t,
+                    this.point.g + this.rate[1] * t,
+                    this.point.b + this.rate[2] * t,
+                );
             }
-
-
-
-
 
             scale(n: number): Vector {
                 return new Vector(this.point, [
                     this.rate[0] * n,
                     this.rate[1] * n,
-                    this.rate[2] * n
+                    this.rate[2] * n,
                 ]);
             }
-
 
             determinant(v: Vector): number {
                 return this.cross(v).magnitude;
             }
-
 
             get modify() {
                 const v = this;
@@ -721,11 +686,10 @@ class Color implements Color {
                     scale(n: number): Vector {
                         const v2 = v.scale(n);
                         v.rate = v2.rate;
-                        return v; 
-                    }
-                }
+                        return v;
+                    },
+                };
             }
-
 
             get plane(): Plane {
                 return new Plane(this.point, this);
@@ -736,18 +700,13 @@ class Color implements Color {
             }
         }
 
-
         class Plane {
             constructor(public point: Color, public normal: Vector) {}
-
 
             normalTo(v: Vector): Vector {
                 return this.normal.cross(v);
             }
         }
-
-
-
 
         return {
             Vector,
@@ -755,7 +714,7 @@ class Color implements Color {
                 return new Vector(from, [
                     to.math.x - from.math.x,
                     to.math.y - from.math.y,
-                    to.math.z - from.math.z
+                    to.math.z - from.math.z,
                 ]);
             },
             threePointPlane(c1: Color, c2: Color, c3: Color): Plane {
@@ -773,16 +732,25 @@ class Color implements Color {
                 const sin = Math.sin(angle);
 
                 return new Matrix([
-                    [cos + x ** 2 * (1 - cos), x * y * (1 - cos) - z * sin, x * z * (1 - cos) + y * sin],
-                    [y * x * (1 - cos) + z * sin, cos + y ** 2 * (1 - cos), y * z * (1 - cos) - x * sin],
-                    [z * x * (1 - cos) - y * sin, z * y * (1 - cos) + x * sin, cos + z ** 2 * (1 - cos)]
+                    [
+                        cos + x ** 2 * (1 - cos),
+                        x * y * (1 - cos) - z * sin,
+                        x * z * (1 - cos) + y * sin,
+                    ],
+                    [
+                        y * x * (1 - cos) + z * sin,
+                        cos + y ** 2 * (1 - cos),
+                        y * z * (1 - cos) - x * sin,
+                    ],
+                    [
+                        z * x * (1 - cos) - y * sin,
+                        z * y * (1 - cos) + x * sin,
+                        cos + z ** 2 * (1 - cos),
+                    ],
                 ]);
-            }
-        }
+            },
+        };
     }
-
-
-
 
     /**
      * Parses a color string and returns a Color object
@@ -792,7 +760,7 @@ class Color implements Color {
      * @param {(string | ColorStr | BootstrapColor)} color
      * @returns {Color}
      */
-    static parse(color: string | ColorStr | BootstrapColor):Color {
+    static parse(color: string | ColorStr | BootstrapColor): Color {
         // receives a css color string and returns a Color object
         // if the string is not a valid color, returns a Color object with the default color
 
@@ -802,28 +770,38 @@ class Color implements Color {
         if (cl) return cl;
 
         // remove spaces
-        color = color.replace(/\s/g, '');
+        color = color.replace(/\s/g, "");
 
         // hex
-        if (color[0] === '#') return Color.fromHex(color);
+        if (color[0] === "#") return Color.fromHex(color);
         else {
-
             // get numbers between parentheses
             let parsed = color.match(/\(([^)]+)\)/);
 
             // error parsing
-            if (!parsed) return new Color('rgb(0,0,0)');
+            if (!parsed) return new Color("rgb(0,0,0)");
 
+            const colors: number[] = parsed[1].split(",").map((n) =>
+                parseInt(n, 10)
+            );
 
-            const colors: number[] = parsed[1].split(',').map(n => parseInt(n, 10));
-
-            switch (color.split('(')[0]) {
-                case 'rgb':
-                    return Color.fromRGB(colors[0], colors[1], colors[2], colors[3]);
-                case 'hsl':
-                    return Color.fromHSL(colors[0], colors[1], colors[2], colors[3]);
+            switch (color.split("(")[0]) {
+                case "rgb":
+                    return Color.fromRGB(
+                        colors[0],
+                        colors[1],
+                        colors[2],
+                        colors[3],
+                    );
+                case "hsl":
+                    return Color.fromHSL(
+                        colors[0],
+                        colors[1],
+                        colors[2],
+                        colors[3],
+                    );
                 default:
-                    return new Color('rgb(0,0,0)');
+                    return new Color("rgb(0,0,0)");
             }
         }
     }
@@ -873,21 +851,32 @@ class Color implements Color {
      * @returns {Color}
      */
     static fromHSL(h: number, s: number, l: number, a?: number): Color {
-        const params = ['hue', 'saturation', 'lightness'];
-        [h,s,l].forEach((v, i) => {
-            if (isNaN(v)) throw new Error(`Invalid ${params[i]}, ${v} is not a parsable number`);
+        const params = ["hue", "saturation", "lightness"];
+        [h, s, l].forEach((v, i) => {
+            if (isNaN(v)) {
+                throw new Error(
+                    `Invalid ${params[i]}, ${v} is not a parsable number`,
+                );
+            }
 
             if (v > 1) {
-                console.warn(`Invalid ${params[i]}, ${v} is greater than 1. It will be set to 1`);
+                console.warn(
+                    `Invalid ${
+                        params[i]
+                    }, ${v} is greater than 1. It will be set to 1`,
+                );
                 v = 1;
             }
 
             if (v < 0) {
-                console.warn(`Invalid ${params[i]}, ${v} is less than 0. It will be set to 0`);
+                console.warn(
+                    `Invalid ${
+                        params[i]
+                    }, ${v} is less than 0. It will be set to 0`,
+                );
                 v = 0;
             }
         });
-
 
         let r, g, b;
 
@@ -901,7 +890,7 @@ class Color implements Color {
                 if (t < 1 / 2) return q;
                 if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
                 return p;
-            }
+            };
 
             const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
             const p = 2 * l - q;
@@ -922,7 +911,11 @@ class Color implements Color {
      * @returns {Color}
      */
     static random(): Color {
-        return new Color(Math.random() * 255, Math.random() * 255, Math.random() * 255);
+        return new Color(
+            Math.random() * 255,
+            Math.random() * 255,
+            Math.random() * 255,
+        );
     }
 
     /**
@@ -934,7 +927,7 @@ class Color implements Color {
      * @param {T} name
      * @returns {Color}
      */
-    static fromName<T extends ColorStr>(name: T):Color;
+    static fromName<T extends ColorStr>(name: T): Color;
     /**
      * Generates a color object from a name
      * @date 1/10/2024 - 2:49:15 PM
@@ -943,7 +936,7 @@ class Color implements Color {
      * @param {ColorStr} name
      * @returns {(Color|undefined)}
      */
-    static fromName(name: ColorStr):Color|undefined {
+    static fromName(name: ColorStr): Color | undefined {
         const c = Color.colors[name];
 
         if (c) return new Color(...c);
@@ -958,7 +951,7 @@ class Color implements Color {
      * @param {T} name
      * @returns {Color}
      */
-    static fromBootstrap<T extends BootstrapColor>(name: T):Color;
+    static fromBootstrap<T extends BootstrapColor>(name: T): Color;
     /**
      * Generates a color object from a bootstrap name
      * @date 1/10/2024 - 2:49:14 PM
@@ -967,7 +960,7 @@ class Color implements Color {
      * @param {BootstrapColor} name
      * @returns {(Color | undefined)}
      */
-    static fromBootstrap(name: BootstrapColor):Color | undefined {
+    static fromBootstrap(name: BootstrapColor): Color | undefined {
         const c = Color.bootstrap[name];
 
         if (c) return new Color(...c);
@@ -981,33 +974,33 @@ class Color implements Color {
      * @param {...Color[]} colors
      * @returns {Color}
      */
-    static generateRandomWithContrast(...colors:Color[]):Color {
+    static generateRandomWithContrast(...colors: Color[]): Color {
         type interval = {
             diff: number;
             hues: number[];
-        }
+        };
 
-        const hsls:number[] = colors.map(c => c.hsl.values[0]);
-        
-        const intervals = hsls.reduce((intervals, hue, i):interval[] => {
+        const hsls: number[] = colors.map((c) => c.hsl.values[0]);
+
+        const intervals = hsls.reduce((intervals, hue, i): interval[] => {
             const next = hsls[i + 1];
             if (next) {
                 intervals.push({
                     diff: Math.abs(hue - next),
-                    hues: [hue, next]
+                    hues: [hue, next],
                 });
             }
 
             return intervals;
         }, [] as interval[]);
 
-        const max = Math.max(...intervals.map(i => i.diff));
-        let int = intervals.find(i => i.diff === max);
+        const max = Math.max(...intervals.map((i) => i.diff));
+        let int = intervals.find((i) => i.diff === max);
         int = int || intervals[0];
 
         const [hue1, hue2] = int.hues;
         const hue = Math.random() * (hue2 - hue1) + hue1;
-        
+
         const color = Color.fromHSL(hue, 0.5, 0.5);
         return color;
     }
@@ -1167,8 +1160,8 @@ class Color implements Color {
             "whitesmoke": [245, 245, 245, 1],
             "yellow": [255, 255, 0, 1],
             "yellowgreen": [154, 205, 50, 1],
-            "rebeccapurple": [102, 51, 153, 1]
-        }
+            "rebeccapurple": [102, 51, 153, 1],
+        };
     }
 
     /**
@@ -1284,7 +1277,7 @@ class Color implements Color {
             // "green-light": Color.fromHex('#66ff66').rgba.values,
             "green-dark": [0, 51, 0, 1],
             // "green-dark": Color.fromHex('#003300').rgba.values
-        }
+        };
     }
 
     /**
@@ -1293,7 +1286,7 @@ class Color implements Color {
      * @property {number} distance The distance between the colors
      * @property {Color} color The closest color
      */
-    get closestName():ClosestColor {
+    get closestName(): ClosestColor {
         const { colors } = Color;
         const [r, g, b] = this.rgb.values;
 
@@ -1301,30 +1294,30 @@ class Color implements Color {
             const [r2, g2, b2] = rgb;
             const distance = Math.sqrt(
                 Math.pow(r - r2, 2) +
-                Math.pow(g - g2, 2) +
-                Math.pow(b - b2, 2)
+                    Math.pow(g - g2, 2) +
+                    Math.pow(b - b2, 2),
             );
 
             if (distance < closest.distance) {
                 return {
                     name,
                     distance,
-                    color: new Color(r2, g2, b2)
+                    color: new Color(r2, g2, b2),
                 };
             }
 
             return closest;
         }, {
-            name: '',
+            name: "",
             distance: Infinity,
-            color: new Color(0, 0, 0)
+            color: new Color(0, 0, 0),
         } as ClosestColor);
     }
 
     /**
      * @returns {Object} The closest bootstrap color and its distance
      */
-    get closestBootstrap():ClosestColor {
+    get closestBootstrap(): ClosestColor {
         const { bootstrap } = Color;
         const [r, g, b] = this.rgb.values;
 
@@ -1332,23 +1325,23 @@ class Color implements Color {
             const [r2, g2, b2] = rgb;
             const distance = Math.sqrt(
                 Math.pow(r - r2, 2) +
-                Math.pow(g - g2, 2) +
-                Math.pow(b - b2, 2)
+                    Math.pow(g - g2, 2) +
+                    Math.pow(b - b2, 2),
             );
 
             if (distance < closest.distance) {
                 return {
                     name,
                     distance,
-                    color: new Color(r2, g2, b2)
+                    color: new Color(r2, g2, b2),
                 };
             }
 
             return closest;
         }, {
-            name: '',
+            name: "",
             distance: Infinity,
-            color: new Color(0, 0, 0)
+            color: new Color(0, 0, 0),
         } as ClosestColor);
     }
 
@@ -1369,10 +1362,19 @@ class Color implements Color {
      * @param {?number} [blue]
      * @param {?number} [alpha]
      */
-    constructor(redOrString: number | string | ColorStr | BootstrapColor, green?: number, blue?: number, alpha?: number) {
-        if (typeof redOrString === 'string') {
-            if (green !== undefined || blue !== undefined || alpha !== undefined) {
-                throw new Error('Invalid arguments. If the first argument is a string, the other arguments must be undefined.');
+    constructor(
+        redOrString: number | string | ColorStr | BootstrapColor,
+        green?: number,
+        blue?: number,
+        alpha?: number,
+    ) {
+        if (typeof redOrString === "string") {
+            if (
+                green !== undefined || blue !== undefined || alpha !== undefined
+            ) {
+                throw new Error(
+                    "Invalid arguments. If the first argument is a string, the other arguments must be undefined.",
+                );
             }
 
             const c = Color.parse(redOrString);
@@ -1385,34 +1387,47 @@ class Color implements Color {
             // let allowed:boolean = false;
 
             const check: string[] = [
-                'red',
-                'green',
-                'blue',
-                'alpha'
+                "red",
+                "green",
+                "blue",
+                "alpha",
             ];
 
             [
                 redOrString,
                 green,
                 blue,
-                alpha
+                alpha,
             ].forEach((value, index) => {
                 if (value === undefined) return;
-                if (isNaN(value)) throw new Error(`Invalid ${check[index]}, ${value} is not a parsable number`);
+                if (isNaN(value)) {
+                    throw new Error(
+                        `Invalid ${
+                            check[index]
+                        }, ${value} is not a parsable number`,
+                    );
+                }
 
                 if (value > 255) {
-                    console.warn(`Invalid ${check[index]}, ${value} is greater than 255. It will be set to 255`);
+                    console.warn(
+                        `Invalid ${
+                            check[index]
+                        }, ${value} is greater than 255. It will be set to 255`,
+                    );
                     value = 255;
                 }
 
                 if (value < 0) {
-                    console.warn(`Invalid ${check[index]}, ${value} is less than 0. It will be set to 0`);
+                    console.warn(
+                        `Invalid ${
+                            check[index]
+                        }, ${value} is less than 0. It will be set to 0`,
+                    );
                     value = 0;
                 }
 
                 // allowed = true;
             });
-
 
             alpha = alpha || 1;
 
@@ -1445,8 +1460,8 @@ class Color implements Color {
             setBlue: (value: number) => {
                 this.b = value;
                 return this;
-            }
-        }
+            },
+        };
     }
 
     /**
@@ -1461,8 +1476,8 @@ class Color implements Color {
             ...this.rgb,
             values: [...this.rgb.values, this.a],
             toString: () => `rgba(${this.r}, ${this.g}, ${this.b}, ${this.a})`,
-            setAlpha: this.setAlpha
-        }
+            setAlpha: this.setAlpha,
+        };
     }
 
     /**
@@ -1473,7 +1488,7 @@ class Color implements Color {
      * @type {{ values: {}; toString: () => string; set: (hue: number, saturation: number, lightness: number) => this; setHue: (value: number) => this; setSaturation: (value: number) => this; setLightness: (value: number) => this; }}
      */
     get hsl() {
-        let h:number, s:number, l:number;
+        let h: number, s: number, l: number;
 
         const r = this.r / 255;
         const g = this.g / 255;
@@ -1493,9 +1508,15 @@ class Color implements Color {
             s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
 
             switch (max) {
-                case r: h = (g - b) / d + (g < b ? 6 : 0); break;
-                case g: h = (b - r) / d + 2; break;
-                case b: h = (r - g) / d + 4; break;
+                case r:
+                    h = (g - b) / d + (g < b ? 6 : 0);
+                    break;
+                case g:
+                    h = (b - r) / d + 2;
+                    break;
+                case b:
+                    h = (r - g) / d + 4;
+                    break;
             }
 
             h /= 6;
@@ -1539,8 +1560,8 @@ class Color implements Color {
                 this.b = color.b;
 
                 return this;
-            }
-        }
+            },
+        };
     }
 
     /**
@@ -1554,19 +1575,27 @@ class Color implements Color {
         return {
             ...this.hsl,
             values: [...this.hsl.values, this.a],
-            toString: ():string => `hsla(${this.hsl.values[0]}, ${this.hsl.values[1]}, ${this.hsl.values[2]}, ${this.a})`,
+            toString: (): string =>
+                `hsla(${this.hsl.values[0]}, ${this.hsl.values[1]}, ${
+                    this.hsl.values[2]
+                }, ${this.a})`,
             setAlpha: this.setAlpha,
-            set: (hue: number, saturation: number, lightness: number, alpha: number):Color => {
+            set: (
+                hue: number,
+                saturation: number,
+                lightness: number,
+                alpha: number,
+            ): Color => {
                 const color = Color.fromHSL(hue, saturation, lightness, alpha);
 
                 this.r = color.r;
                 this.g = color.g;
                 this.b = color.b;
                 this.a = color.a;
-                
+
                 return this;
-            }
-        }
+            },
+        };
     }
 
     /**
@@ -1577,9 +1606,9 @@ class Color implements Color {
      * @type {{ values: {}; toString: () => string; setRed: (value: number) => this; setGreen: (value: number) => this; setBlue: (value: number) => this; }}
      */
     get hex() {
-        const r = this.r.toString(16) || '00';
-        const g = this.g.toString(16) || '00';
-        const b = this.b.toString(16) || '00';
+        const r = this.r.toString(16) || "00";
+        const g = this.g.toString(16) || "00";
+        const b = this.b.toString(16) || "00";
 
         return {
             values: [r, g, b],
@@ -1595,8 +1624,8 @@ class Color implements Color {
             setBlue: (value: number) => {
                 this.b = value;
                 return this;
-            }
-        }
+            },
+        };
     }
 
     /**
@@ -1616,11 +1645,9 @@ class Color implements Color {
             ...this.hex,
             values: [r, g, b, a],
             toString: () => `#${r}${g}${b}${a}`,
-            setAlpha: this.setAlpha
-        }
+            setAlpha: this.setAlpha,
+        };
     }
-
-
 
     /**
      * Sets the alpha value of the color
@@ -1643,23 +1670,24 @@ class Color implements Color {
      * @param {('hex' | 'hexa' | 'hsl' | 'hsla' | 'rgb' | 'rgba')} [type='rgba']
      * @returns {string}
      */
-    public toString(type: 'hex' | 'hexa' | 'hsl' | 'hsla' | 'rgb' | 'rgba' = 'rgba'): string {
+    public toString(
+        type: "hex" | "hexa" | "hsl" | "hsla" | "rgb" | "rgba" = "rgba",
+    ): string {
         switch (type) {
-            case 'hex':
+            case "hex":
                 return this.hex.toString();
-            case 'hexa':
+            case "hexa":
                 return this.hexa.toString();
-            case 'hsl':
+            case "hsl":
                 return this.hsl.toString();
-            case 'hsla':
+            case "hsla":
                 return this.hsla.toString();
-            case 'rgb':
+            case "rgb":
                 return this.rgb.toString();
-            case 'rgba':
+            case "rgba":
                 return this.rgba.toString();
-        };
+        }
     }
-
 
     // generating colors
 
@@ -1671,17 +1699,20 @@ class Color implements Color {
      * @param {number} num
      * @returns {Gradient}
      */
-    public compliment(num:number): Gradient {
+    public compliment(num: number): Gradient {
         num = Math.floor(num);
         if (num < 2) num = 2;
 
-        const interval = 1/num;
+        const interval = 1 / num;
         const hsl = this.hsl.values;
         const hues = new Array(num - 1).fill(0).map((_, i) => {
             return (hsl[0] + (i + 1) * interval) % 1;
         });
 
-        const g = [this, ...hues.map(h => Color.fromHSL(h, hsl[1], hsl[2], this.a))];
+        const g = [
+            this,
+            ...hues.map((h) => Color.fromHSL(h, hsl[1], hsl[2], this.a)),
+        ];
 
         return new Gradient(...g);
     }
@@ -1693,15 +1724,20 @@ class Color implements Color {
      * @public
      * @returns {[Color, Color, Color]}
      */
-    public analogous():[Color, Color, Color] {
+    public analogous(): [Color, Color, Color] {
         const hsl = this.hsl.values;
-        const hues: [number, number] = [hsl[0] - (30 / 360), hsl[0] + (30 / 360)];
+        const hues: [number, number] = [
+            hsl[0] - (30 / 360),
+            hsl[0] + (30 / 360),
+        ];
 
-        const [h1, h2] = hues.map(h => Color.fromHSL(h, hsl[1], hsl[2], this.a));
+        const [h1, h2] = hues.map((h) =>
+            Color.fromHSL(h, hsl[1], hsl[2], this.a)
+        );
         return [
             this,
             h1,
-            h2
+            h2,
         ];
     }
 
@@ -1714,24 +1750,32 @@ class Color implements Color {
      * @param {number} [distance=0.5]
      * @returns {Color}
      */
-    public interpolate(toColor: Color, distance: number = 0.5):Color {
+    public interpolate(toColor: Color, distance: number = 0.5): Color {
         if (isNaN(distance)) {
-            console.warn('Distance must be a number between 0 and 1. Defaulting to 0.5');
+            console.warn(
+                "Distance must be a number between 0 and 1. Defaulting to 0.5",
+            );
             distance = 0.5;
         }
 
         if (!(toColor instanceof Color)) {
-            console.warn('toColor must be an instance of Color. Defaulting to black');
+            console.warn(
+                "toColor must be an instance of Color. Defaulting to black",
+            );
             toColor = new Color(0, 0, 0);
         }
 
         if (distance < 0) {
-            console.warn('Distance must be a number greater than 0. Defaulting to 0');
+            console.warn(
+                "Distance must be a number greater than 0. Defaulting to 0",
+            );
             distance = 0;
         }
 
         if (distance > 1) {
-            console.warn('Distance must be a number less than 1. Defaulting to 1');
+            console.warn(
+                "Distance must be a number less than 1. Defaulting to 1",
+            );
             distance = 1;
         }
 
@@ -1746,10 +1790,6 @@ class Color implements Color {
         return new Color(r, g, b, a);
     }
 
-
-
-
-
     /**
      * Returns a linear gradient between two colors
      * @date 1/10/2024 - 2:49:14 PM
@@ -1759,7 +1799,7 @@ class Color implements Color {
      * @param {number} frames
      * @returns {Gradient}
      */
-    public linearFade(color:Color, frames: number):Gradient {
+    public linearFade(color: Color, frames: number): Gradient {
         return Gradient.curve(this, color, (x: number) => x, frames);
     }
 
@@ -1773,8 +1813,17 @@ class Color implements Color {
      * @param {number} [base=2]
      * @returns {Gradient}
      */
-    public exponentialFade(color:Color, frames:number, base: number = 2): Gradient {
-        return Gradient.curve(this, color, (x: number) => Math.pow(base, x), frames);
+    public exponentialFade(
+        color: Color,
+        frames: number,
+        base: number = 2,
+    ): Gradient {
+        return Gradient.curve(
+            this,
+            color,
+            (x: number) => Math.pow(base, x),
+            frames,
+        );
     }
 
     /**
@@ -1787,12 +1836,18 @@ class Color implements Color {
      * @param {number} [base=2]
      * @returns {Gradient}
      */
-    public logarithmicFade(color:Color, frames:number, base: number = 2): Gradient {
-        return Gradient.curve(this, color, (x: number) => Math.log(x) / Math.log(base), frames);
+    public logarithmicFade(
+        color: Color,
+        frames: number,
+        base: number = 2,
+    ): Gradient {
+        return Gradient.curve(
+            this,
+            color,
+            (x: number) => Math.log(x) / Math.log(base),
+            frames,
+        );
     }
-
-
-
 
     /**
      * Returns the contrast ratio between this and another color
@@ -1802,18 +1857,19 @@ class Color implements Color {
      * @param {Color} color
      * @returns {number}
      */
-    public detectContrast(color:Color):number {
-        const l1 = 0.2126 * Math.pow(this.r / 255, 2.2) + 0.7152 * Math.pow(this.g / 255, 2.2) + 0.0722 * Math.pow(this.b / 255, 2.2);
-        const l2 = 0.2126 * Math.pow(color.r / 255, 2.2) + 0.7152 * Math.pow(color.g / 255, 2.2) + 0.0722 * Math.pow(color.b / 255, 2.2);
+    public detectContrast(color: Color): number {
+        const l1 = 0.2126 * Math.pow(this.r / 255, 2.2) +
+            0.7152 * Math.pow(this.g / 255, 2.2) +
+            0.0722 * Math.pow(this.b / 255, 2.2);
+        const l2 = 0.2126 * Math.pow(color.r / 255, 2.2) +
+            0.7152 * Math.pow(color.g / 255, 2.2) +
+            0.0722 * Math.pow(color.b / 255, 2.2);
 
         return (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05);
     }
 
-
-
-
     // view in console
-    
+
     /**
      * Logs the color to the console as text
      * @date 1/10/2024 - 2:49:14 PM
@@ -1821,8 +1877,8 @@ class Color implements Color {
      * @public
      * @param {...*} args
      */
-    public logText(...args:any) {
-        console.log(`%c${args.join(' ')}`, `color: ${this.toString()}`);
+    public logText(...args: any) {
+        console.log(`%c${args.join(" ")}`, `color: ${this.toString()}`);
     }
 
     /**
@@ -1832,14 +1888,8 @@ class Color implements Color {
      * @public
      */
     public view() {
-        this.logText('Color:', this.closestName.name);
+        this.logText("Color:", this.closestName.name);
     }
-
-
-
-
-
-
 
     /**
      * Mathematics around the color
@@ -1854,7 +1904,11 @@ class Color implements Color {
             x: p.r / 255,
             y: p.g / 255,
             z: p.b / 255,
-            point: [p.r / 255, p.g / 255, p.b / 255] as [number, number, number]
-        }
+            point: [p.r / 255, p.g / 255, p.b / 255] as [
+                number,
+                number,
+                number,
+            ],
+        };
     }
-};
+}
