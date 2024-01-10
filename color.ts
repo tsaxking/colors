@@ -1,16 +1,83 @@
+/**
+ * A color interface
+ * @date 1/10/2024 - 2:49:15 PM
+ *
+ * @interface Color
+ * @typedef {Color}
+ */
 interface Color {
+    /**
+     * Description placeholder
+     * @date 1/10/2024 - 2:49:15 PM
+     *
+     * @type {number}
+     */
     r: number;
+    /**
+     * Description placeholder
+     * @date 1/10/2024 - 2:49:15 PM
+     *
+     * @type {number}
+     */
     g: number;
+    /**
+     * Description placeholder
+     * @date 1/10/2024 - 2:49:15 PM
+     *
+     * @type {number}
+     */
     b: number;
+    /**
+     * Description placeholder
+     * @date 1/10/2024 - 2:49:15 PM
+     *
+     * @type {number}
+     */
     a: number;
 
+    /**
+     * Description placeholder
+     * @date 1/10/2024 - 2:49:15 PM
+     *
+     * @returns {Color}
+     */
     parse(): Color;
+    /**
+     * Description placeholder
+     * @date 1/10/2024 - 2:49:15 PM
+     *
+     * @returns {Color}
+     */
     fromHex(): Color;
+    /**
+     * Description placeholder
+     * @date 1/10/2024 - 2:49:15 PM
+     *
+     * @returns {Color}
+     */
     fromRGB(): Color;
+    /**
+     * Description placeholder
+     * @date 1/10/2024 - 2:49:15 PM
+     *
+     * @returns {Color}
+     */
     fromHSL(): Color;
+    /**
+     * Description placeholder
+     * @date 1/10/2024 - 2:49:15 PM
+     *
+     * @returns {string}
+     */
     toString(): string;
 };
 
+/**
+ * All the color names
+ * @date 1/10/2024 - 2:49:15 PM
+ *
+ * @typedef {ColorStr}
+ */
 type ColorStr = 
     "aliceblue"|
     "antiquewhite"|
@@ -164,6 +231,12 @@ type ColorStr =
 
 
 
+/**
+ * All the bootstrap colors
+ * @date 1/10/2024 - 2:49:15 PM
+ *
+ * @typedef {BootstrapColor}
+ */
 type BootstrapColor = 
     "primary"|
     "secondary"|
@@ -218,12 +291,30 @@ type BootstrapColor =
 
 
 
+/**
+ * A color array of r,g,b,a
+ * @date 1/10/2024 - 2:49:15 PM
+ *
+ * @typedef {colorArray}
+ */
 type colorArray = [number, number, number, number];
 
+/**
+ * Color object containing their name and respective color array
+ * @date 1/10/2024 - 2:49:15 PM
+ *
+ * @typedef {colors}
+ */
 type colors = {
     [key: string]:colorArray;
 }
 
+/**
+ * Closest color object containing the name, distance, and color
+ * @date 1/10/2024 - 2:49:15 PM
+ *
+ * @typedef {ClosestColor}
+ */
 type ClosestColor = {
     name: string;
     distance: number;
@@ -254,9 +345,25 @@ type ClosestColor = {
 
 
 
+/**
+ * A color class that can be used to parse, modify, and convert colors
+ * @date 1/10/2024 - 2:49:15 PM
+ *
+ * @class Color
+ * @typedef {Color}
+ * @implements {Color}
+ */
 class Color implements Color {
 
 
+    /**
+     * Math functions
+     * @date 1/10/2024 - 2:49:15 PM
+     *
+     * @static
+     * @readonly
+     * @type {{ Vector: typeof Vector; getVector(from: Color, to: Color): Vector; threePointPlane(c1: Color, c2: Color, c3: Color): Plane; getTransformMatrix(normal: Vector, angle: number): Matrix; }}
+     */
     static get math() {
         class Matrix {
             constructor(public matrix: number[][]) {}
@@ -677,6 +784,14 @@ class Color implements Color {
 
 
 
+    /**
+     * Parses a color string and returns a Color object
+     * @date 1/10/2024 - 2:49:15 PM
+     *
+     * @static
+     * @param {(string | ColorStr | BootstrapColor)} color
+     * @returns {Color}
+     */
     static parse(color: string | ColorStr | BootstrapColor):Color {
         // receives a css color string and returns a Color object
         // if the string is not a valid color, returns a Color object with the default color
@@ -713,6 +828,14 @@ class Color implements Color {
         }
     }
 
+    /**
+     * Returns a color from a hex string
+     * @date 1/10/2024 - 2:49:15 PM
+     *
+     * @static
+     * @param {string} hex
+     * @returns {Color}
+     */
     static fromHex(hex: string): Color {
         const r = parseInt(hex.slice(1, 3), 16);
         const g = parseInt(hex.slice(3, 5), 16);
@@ -723,10 +846,32 @@ class Color implements Color {
         return new Color(r, g, b, a);
     }
 
+    /**
+     * Returns a color from rgb values
+     * @date 1/10/2024 - 2:49:15 PM
+     *
+     * @static
+     * @param {number} r
+     * @param {number} g
+     * @param {number} b
+     * @param {?number} [a]
+     * @returns {Color}
+     */
     static fromRGB(r: number, g: number, b: number, a?: number): Color {
         return new Color(r, g, b, a);
     }
 
+    /**
+     * Returns a color from hsl values
+     * @date 1/10/2024 - 2:49:15 PM
+     *
+     * @static
+     * @param {number} h
+     * @param {number} s
+     * @param {number} l
+     * @param {?number} [a]
+     * @returns {Color}
+     */
     static fromHSL(h: number, s: number, l: number, a?: number): Color {
         const params = ['hue', 'saturation', 'lightness'];
         [h,s,l].forEach((v, i) => {
@@ -769,24 +914,73 @@ class Color implements Color {
         return new Color(r * 255, g * 255, b * 255, a);
     }
 
+    /**
+     * Returns a random color
+     * @date 1/10/2024 - 2:49:15 PM
+     *
+     * @static
+     * @returns {Color}
+     */
     static random(): Color {
         return new Color(Math.random() * 255, Math.random() * 255, Math.random() * 255);
     }
 
+    /**
+     * Generates a color object from a name
+     * @date 1/10/2024 - 2:49:15 PM
+     *
+     * @static
+     * @template {ColorStr} T
+     * @param {T} name
+     * @returns {Color}
+     */
     static fromName<T extends ColorStr>(name: T):Color;
+    /**
+     * Generates a color object from a name
+     * @date 1/10/2024 - 2:49:15 PM
+     *
+     * @static
+     * @param {ColorStr} name
+     * @returns {(Color|undefined)}
+     */
     static fromName(name: ColorStr):Color|undefined {
         const c = Color.colors[name];
 
         if (c) return new Color(...c);
     }
 
+    /**
+     * Generates a color object from a bootstrap name
+     * @date 1/10/2024 - 2:49:14 PM
+     *
+     * @static
+     * @template {BootstrapColor} T
+     * @param {T} name
+     * @returns {Color}
+     */
     static fromBootstrap<T extends BootstrapColor>(name: T):Color;
+    /**
+     * Generates a color object from a bootstrap name
+     * @date 1/10/2024 - 2:49:14 PM
+     *
+     * @static
+     * @param {BootstrapColor} name
+     * @returns {(Color | undefined)}
+     */
     static fromBootstrap(name: BootstrapColor):Color | undefined {
         const c = Color.bootstrap[name];
 
         if (c) return new Color(...c);
     }
 
+    /**
+     * Generates a random color with a contrast to the given colors
+     * @date 1/10/2024 - 2:49:14 PM
+     *
+     * @static
+     * @param {...Color[]} colors
+     * @returns {Color}
+     */
     static generateRandomWithContrast(...colors:Color[]):Color {
         type interval = {
             diff: number;
@@ -978,7 +1172,7 @@ class Color implements Color {
     }
 
     /**
-     * Get the bootstrap colors
+     * All the bootstrap colors and their RGB values
      */
     static get bootstrap(): {
         [key in BootstrapColor]: colorArray;
@@ -1165,6 +1359,16 @@ class Color implements Color {
         return new Color(this.r, this.g, this.b, this.a);
     }
 
+    /**
+     * Creates an instance of Color.
+     * @date 1/10/2024 - 2:49:14 PM
+     *
+     * @constructor
+     * @param {(number | string | ColorStr | BootstrapColor)} redOrString
+     * @param {?number} [green]
+     * @param {?number} [blue]
+     * @param {?number} [alpha]
+     */
     constructor(redOrString: number | string | ColorStr | BootstrapColor, green?: number, blue?: number, alpha?: number) {
         if (typeof redOrString === 'string') {
             if (green !== undefined || blue !== undefined || alpha !== undefined) {
@@ -1219,6 +1423,13 @@ class Color implements Color {
         }
     }
 
+    /**
+     * Rgb math
+     * @date 1/10/2024 - 2:49:14 PM
+     *
+     * @readonly
+     * @type {{ values: {}; toString: () => string; setRed: (value: number) => this; setGreen: (value: number) => this; setBlue: (value: number) => this; }}
+     */
     get rgb() {
         return {
             values: [this.r, this.g, this.b],
@@ -1238,6 +1449,13 @@ class Color implements Color {
         }
     }
 
+    /**
+     * Rgba math
+     * @date 1/10/2024 - 2:49:14 PM
+     *
+     * @readonly
+     * @type {{ values: {}; toString: () => string; setAlpha: (value: number) => this; setRed: (value: number) => this; setGreen: (value: number) => this; setBlue: (value: number) => this; }}
+     */
     get rgba() {
         return {
             ...this.rgb,
@@ -1247,6 +1465,13 @@ class Color implements Color {
         }
     }
 
+    /**
+     * Hsl math
+     * @date 1/10/2024 - 2:49:14 PM
+     *
+     * @readonly
+     * @type {{ values: {}; toString: () => string; set: (hue: number, saturation: number, lightness: number) => this; setHue: (value: number) => this; setSaturation: (value: number) => this; setLightness: (value: number) => this; }}
+     */
     get hsl() {
         let h:number, s:number, l:number;
 
@@ -1318,6 +1543,13 @@ class Color implements Color {
         }
     }
 
+    /**
+     * Hsla math
+     * @date 1/10/2024 - 2:49:14 PM
+     *
+     * @readonly
+     * @type {{ values: {}; toString: () => string; setAlpha: (value: number) => this; set: (hue: number, saturation: number, lightness: number, alpha: number) => Color; setHue: (value: number) => this; setSaturation: (value: number) => this; setLightness: (value: number) => this; }}
+     */
     get hsla() {
         return {
             ...this.hsl,
@@ -1337,6 +1569,13 @@ class Color implements Color {
         }
     }
 
+    /**
+     * Hex math
+     * @date 1/10/2024 - 2:49:14 PM
+     *
+     * @readonly
+     * @type {{ values: {}; toString: () => string; setRed: (value: number) => this; setGreen: (value: number) => this; setBlue: (value: number) => this; }}
+     */
     get hex() {
         const r = this.r.toString(16) || '00';
         const g = this.g.toString(16) || '00';
@@ -1360,6 +1599,13 @@ class Color implements Color {
         }
     }
 
+    /**
+     * Hexa math
+     * @date 1/10/2024 - 2:49:14 PM
+     *
+     * @readonly
+     * @type {{ values: {}; toString: () => string; setAlpha: (value: number) => this; setRed: (value: number) => this; setGreen: (value: number) => this; setBlue: (value: number) => this; }}
+     */
     get hexa() {
         const r = this.r.toString(16);
         const g = this.g.toString(16);
@@ -1376,11 +1622,27 @@ class Color implements Color {
 
 
 
+    /**
+     * Sets the alpha value of the color
+     * @date 1/10/2024 - 2:49:14 PM
+     *
+     * @public
+     * @param {number} value
+     * @returns {this}
+     */
     public setAlpha(value: number) {
         this.a = value;
         return this;
     }
 
+    /**
+     * Returns a string representation of the color given a type (default rgba)
+     * @date 1/10/2024 - 2:49:14 PM
+     *
+     * @public
+     * @param {('hex' | 'hexa' | 'hsl' | 'hsla' | 'rgb' | 'rgba')} [type='rgba']
+     * @returns {string}
+     */
     public toString(type: 'hex' | 'hexa' | 'hsl' | 'hsla' | 'rgb' | 'rgba' = 'rgba'): string {
         switch (type) {
             case 'hex':
@@ -1401,6 +1663,14 @@ class Color implements Color {
 
     // generating colors
 
+    /**
+     * Returns complimentary colors as a gradient
+     * @date 1/10/2024 - 2:49:14 PM
+     *
+     * @public
+     * @param {number} num
+     * @returns {Gradient}
+     */
     public compliment(num:number): Gradient {
         num = Math.floor(num);
         if (num < 2) num = 2;
@@ -1416,6 +1686,13 @@ class Color implements Color {
         return new Gradient(...g);
     }
 
+    /**
+     * Returns analogous colors as an array (this, left, right 30 degrees apart)
+     * @date 1/10/2024 - 2:49:14 PM
+     *
+     * @public
+     * @returns {[Color, Color, Color]}
+     */
     public analogous():[Color, Color, Color] {
         const hsl = this.hsl.values;
         const hues: [number, number] = [hsl[0] - (30 / 360), hsl[0] + (30 / 360)];
@@ -1428,6 +1705,15 @@ class Color implements Color {
         ];
     }
 
+    /**
+     * Interpolates a color between this and another color given a ratio
+     * @date 1/10/2024 - 2:49:14 PM
+     *
+     * @public
+     * @param {Color} toColor
+     * @param {number} [distance=0.5]
+     * @returns {Color}
+     */
     public interpolate(toColor: Color, distance: number = 0.5):Color {
         if (isNaN(distance)) {
             console.warn('Distance must be a number between 0 and 1. Defaulting to 0.5');
@@ -1464,14 +1750,43 @@ class Color implements Color {
 
 
 
+    /**
+     * Returns a linear gradient between two colors
+     * @date 1/10/2024 - 2:49:14 PM
+     *
+     * @public
+     * @param {Color} color
+     * @param {number} frames
+     * @returns {Gradient}
+     */
     public linearFade(color:Color, frames: number):Gradient {
         return Gradient.curve(this, color, (x: number) => x, frames);
     }
 
+    /**
+     * Returns an exponential gradient between two colors
+     * @date 1/10/2024 - 2:49:14 PM
+     *
+     * @public
+     * @param {Color} color
+     * @param {number} frames
+     * @param {number} [base=2]
+     * @returns {Gradient}
+     */
     public exponentialFade(color:Color, frames:number, base: number = 2): Gradient {
         return Gradient.curve(this, color, (x: number) => Math.pow(base, x), frames);
     }
 
+    /**
+     * Returns a logarithmic gradient between two colors
+     * @date 1/10/2024 - 2:49:14 PM
+     *
+     * @public
+     * @param {Color} color
+     * @param {number} frames
+     * @param {number} [base=2]
+     * @returns {Gradient}
+     */
     public logarithmicFade(color:Color, frames:number, base: number = 2): Gradient {
         return Gradient.curve(this, color, (x: number) => Math.log(x) / Math.log(base), frames);
     }
@@ -1479,7 +1794,14 @@ class Color implements Color {
 
 
 
-
+    /**
+     * Returns the contrast ratio between this and another color
+     * @date 1/10/2024 - 2:49:14 PM
+     *
+     * @public
+     * @param {Color} color
+     * @returns {number}
+     */
     public detectContrast(color:Color):number {
         const l1 = 0.2126 * Math.pow(this.r / 255, 2.2) + 0.7152 * Math.pow(this.g / 255, 2.2) + 0.0722 * Math.pow(this.b / 255, 2.2);
         const l2 = 0.2126 * Math.pow(color.r / 255, 2.2) + 0.7152 * Math.pow(color.g / 255, 2.2) + 0.0722 * Math.pow(color.b / 255, 2.2);
@@ -1492,10 +1814,23 @@ class Color implements Color {
 
     // view in console
     
+    /**
+     * Logs the color to the console as text
+     * @date 1/10/2024 - 2:49:14 PM
+     *
+     * @public
+     * @param {...*} args
+     */
     public logText(...args:any) {
         console.log(`%c${args.join(' ')}`, `color: ${this.toString()}`);
     }
 
+    /**
+     * Views the color in the console
+     * @date 1/10/2024 - 2:49:14 PM
+     *
+     * @public
+     */
     public view() {
         this.logText('Color:', this.closestName.name);
     }
@@ -1506,6 +1841,13 @@ class Color implements Color {
 
 
 
+    /**
+     * Mathematics around the color
+     * @date 1/10/2024 - 2:49:14 PM
+     *
+     * @readonly
+     * @type {{ x: number; y: number; z: number; point: [number, number, number]; }}
+     */
     get math() {
         const p = this;
         return {

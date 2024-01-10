@@ -948,7 +948,7 @@ const a = axis([.5, .5, .5], .5);
 
 
 
-let framePercentage = 1;
+let framePercentage = .1;
 let framePercentageSpeed = .01;
 
 const update = () => {
@@ -957,7 +957,7 @@ const update = () => {
     rotationMatrix[2] += rotationSpeedMatrix[2];
     
 
-    // framePercentage += framePercentageSpeed;
+    framePercentage += framePercentageSpeed;
 
 
     if (framePercentage >= 1 || framePercentage <= 0) {
@@ -973,23 +973,23 @@ const clear = (ctx: CanvasRenderingContext2D) => {
 
 
 
-const points: Point3d[] = [
-    [0, 0, 0],
-    [.5, 0, 0],
-    [1, .5, 0],
-    [0, 1, 0],
-    [.75, .75, 0],
-    [1, 1, 0],
-    [1, .25, 0]
-]; 
+// const points: Point3d[] = [
+//     [0, 0, 0],
+//     [.5, 0, 0],
+//     [1, .5, 0],
+//     [0, 1, 0],
+//     [.75, .75, 0],
+//     [1, 1, 0],
+//     [1, .25, 0]
+// ]; 
 
-// const points: Point3d[] = new Array(8).fill(0).map((_, i) => {
-//     return[
-//         Math.random(),
-//         Math.random(),
-//         Math.random()
-//     ]
-// });
+const points: Point3d[] = new Array(3).fill(0).map((_, i) => {
+    return[
+        Math.random(),
+        Math.random(),
+        Math.random()
+    ]
+});
 
 
 // const points: Point3d[] = [
@@ -1013,7 +1013,7 @@ const draw = () => {
 
     // a.forEach(e => drawEdge(ctx, e));
 
-    s.forEach(p => drawColorPoint(ctx, p, 5));
+    // s.forEach(p => drawColorPoint(ctx, p, 5));
 
 
     // const p1: Point3d = [0, 0, 0];
@@ -1056,25 +1056,25 @@ const draw = () => {
 
 
     
-    // drawCurve(
-    //     ...bezierSpline(
-    //         500,
-    //         ...points
-    //     ),
-    //     ctx,
-    //     500,
-    //     framePercentage
-    // )
+    drawCurve(
+        ...bezierSpline(
+            1000,
+            ...points
+        ),
+        ctx,
+        500,
+        framePercentage
+    )
 
     // drawCurve(
     //     t => t,
     //     t => t,
-    //     t => t,
+    //     t => t ** 2,
     //     // t => 1 / (10 * t - 10.5) + 1.6 * t + .1,
     //     ctx,
-    //     60,
+    //     1000,
     //     framePercentage
-    // )
+    // );
     cube3d.forEach(p => drawColorPoint(ctx, p, 2));
 
     update();
