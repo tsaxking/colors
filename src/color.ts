@@ -669,39 +669,42 @@ export class Color {
     }
 
     get rgb() {
+        const me = this;
         return {
-            values: [this.r, this.g, this.b],
-            toString: () => `rgb(${this.r}, ${this.g}, ${this.b})`,
-            setRed: (value: number) => {
-                this.r = value;
-                return this;
+            values: [me.r, me.g, me.b],
+            toString: (): string => `rgb(${me.r}, ${me.g}, ${me.b})`,
+            setRed: (value: number): Color => {
+                me.r = value;
+                return me;
             },
-            setGreen: (value: number) => {
-                this.g = value;
-                return this;
+            setGreen: (value: number): Color => {
+                me.g = value;
+                return me;
             },
-            setBlue: (value: number) => {
-                this.b = value;
-                return this;
+            setBlue: (value: number): Color => {
+                me.b = value;
+                return me;
             }
         };
     }
 
     get rgba() {
+        const me = this;
         return {
-            ...this.rgb,
-            values: [...this.rgb.values, this.a],
-            toString: () => `rgba(${this.r}, ${this.g}, ${this.b}, ${this.a})`,
-            setAlpha: this.setAlpha
+            ...me.rgb,
+            values: [...me.rgb.values, me.a],
+            toString: () => `rgba(${me.r}, ${me.g}, ${me.b}, ${me.a})`,
+            setAlpha: (value: number): Color => me.setAlpha(value),
         };
     }
 
     get hsl() {
+        const me = this;
         let h: number, s: number;
 
-        const r = this.r / 255;
-        const g = this.g / 255;
-        const b = this.b / 255;
+        const r = me.r / 255;
+        const g = me.g / 255;
+        const b = me.b / 255;
 
         const max = Math.max(r, g, b);
         const min = Math.min(r, g, b);
@@ -734,52 +737,53 @@ export class Color {
         return {
             values: [h, s, l],
             toString: () => `hsl(${h}, ${s}, ${l})`,
-            set: (hue: number, saturation: number, lightness: number) => {
-                const color = Color.fromHSL(hue, saturation, lightness, this.a);
+            set: (hue: number, saturation: number, lightness: number): Color => {
+                const color = Color.fromHSL(hue, saturation, lightness, me.a);
 
-                this.r = color.r;
-                this.g = color.g;
-                this.b = color.b;
-
-                return this;
-            },
-            setHue: (value: number) => {
-                const color = Color.fromHSL(value, s, l, this.a);
-
-                this.r = color.r;
-                this.g = color.g;
-                this.b = color.b;
+                me.r = color.r;
+                me.g = color.g;
+                me.b = color.b;
 
                 return this;
             },
-            setSaturation: (value: number) => {
-                const color = Color.fromHSL(h, value, l, this.a);
+            setHue: (value: number): Color => {
+                const color = Color.fromHSL(value, s, l, me.a);
 
-                this.r = color.r;
-                this.g = color.g;
-                this.b = color.b;
+                me.r = color.r;
+                me.g = color.g;
+                me.b = color.b;
 
                 return this;
             },
-            setLightness: (value: number) => {
-                const color = Color.fromHSL(h, s, value, this.a);
+            setSaturation: (value: number): Color => {
+                const color = Color.fromHSL(h, value, l, me.a);
 
-                this.r = color.r;
-                this.g = color.g;
-                this.b = color.b;
+                me.r = color.r;
+                me.g = color.g;
+                me.b = color.b;
 
                 return this;
+            },
+            setLightness: (value: number): Color => {
+                const color = Color.fromHSL(h, s, value, me.a);
+
+                me.r = color.r;
+                me.g = color.g;
+                me.b = color.b;
+
+                return me;
             }
         };
     }
 
     get hsla() {
+        const me = this;
         return {
-            ...this.hsl,
-            values: [...this.hsl.values, this.a],
+            ...me.hsl,
+            values: [...me.hsl.values, me.a],
             toString: (): string =>
-                `hsla(${this.hsl.values[0]}, ${this.hsl.values[1]}, ${this.hsl.values[2]}, ${this.a})`,
-            setAlpha: this.setAlpha,
+                `hsla(${me.hsl.values[0]}, ${me.hsl.values[1]}, ${me.hsl.values[2]}, ${me.a})`,
+            setAlpha: (value: number): Color => me.setAlpha(value),
             set: (
                 hue: number,
                 saturation: number,
@@ -788,10 +792,10 @@ export class Color {
             ): Color => {
                 const color = Color.fromHSL(hue, saturation, lightness, alpha);
 
-                this.r = color.r;
-                this.g = color.g;
-                this.b = color.b;
-                this.a = color.a;
+                me.r = color.r;
+                me.g = color.g;
+                me.b = color.b;
+                me.a = color.a;
 
                 return this;
             }
@@ -799,39 +803,41 @@ export class Color {
     }
 
     get hex() {
-        const r = this.r.toString(16);
-        const g = this.g.toString(16);
-        const b = this.b.toString(16);
+        const me = this;
+        const r = me.r.toString(16);
+        const g = me.g.toString(16);
+        const b = me.b.toString(16);
 
         return {
             values: [r, g, b],
             toString: () => `#${r}${g}${b}`,
-            setRed: (value: number) => {
-                this.r = value;
-                return this;
+            setRed: (value: number): Color => {
+                me.r = value;
+                return me;
             },
-            setGreen: (value: number) => {
-                this.g = value;
-                return this;
+            setGreen: (value: number): Color => {
+                me.g = value;
+                return me;
             },
-            setBlue: (value: number) => {
-                this.b = value;
-                return this;
+            setBlue: (value: number): Color => {
+                me.b = value;
+                return me;
             }
         };
     }
 
     get hexa() {
-        const r = this.r.toString(16);
-        const g = this.g.toString(16);
-        const b = this.b.toString(16);
-        const a = this.a.toString(16);
+        const me = this;
+        const r = me.r.toString(16);
+        const g = me.g.toString(16);
+        const b = me.b.toString(16);
+        const a = me.a.toString(16);
 
         return {
             ...this.hex,
             values: [r, g, b, a],
             toString: () => `#${r}${g}${b}${a}`,
-            setAlpha: this.setAlpha
+            setAlpha: (value: number): Color => me.setAlpha(value),
         };
     }
 

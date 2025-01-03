@@ -1,0 +1,31 @@
+{
+  "name": "colors",
+  "version": "1.0.0",
+  "description": "",
+  "main": "lib/cjs/index.js",
+  "module": "lib/esm/index.js",
+  "scripts": {
+    "build": "tsc && tsc -p tsconfig.commonjs.json && node ./scripts/post-build.js",
+    "install": "npm run build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "typescript": "^5.7.2"
+  },
+  "exports": {
+    ".": {
+      "import": "./lib/esm/index.js",
+      "require": "./lib/cjs/index.js"
+    },
+    "./color": {
+      "import": "./lib/esm/color.js",
+      "require": "./lib/cjs/color.js"
+    },
+    "./gradient": {
+      "import": "./lib/esm/gradient.js",
+      "require": "./lib/cjs/gradient.js"
+    }
+  }
+}
