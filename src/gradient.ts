@@ -8,7 +8,16 @@ export class Gradient {
      * @returns {Gradient} Returns a new gradient with the colors faded between each other
      */
     static random(frames = 60): Gradient {
-        return Color.random().linearFade(Color.random(), frames);
+        const color1 = Color.random();
+        const color2 = Color.random();
+        return Gradient.linearFade(color1, color2, frames);
+    }
+
+    static linearFade(from: Color, to: Color, frames = 60): Gradient {
+      return new Gradient(...Array.from({ length: frames }, (_, i) => {
+        const ratio = i / (frames - 1);
+        return from.interpolate(to, ratio);
+       }));
     }
 
     /**
