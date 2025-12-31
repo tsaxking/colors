@@ -1,5 +1,3 @@
-import { Gradient } from './gradient';
-
 const colors = {
     aliceblue: [240, 248, 255, 1],
     antiquewhite: [250, 235, 215, 1],
@@ -329,7 +327,24 @@ export type ClosestColor = {
     color: Color;
 };
 
+/**
+ * Represents a color with RGB and alpha values, providing utilities for color manipulation,
+ * conversion, and generation.
+ */
 export class Color {
+    /**
+     * Parses a CSS color string and returns a Color object.
+     * Supports named colors, Bootstrap colors, hex, rgb, and hsl formats.
+     * @param color - The color string to parse (e.g., "red", "#ff0000", "rgb(255,0,0)", "hsl(0,100%,50%)")
+     * @returns A Color object representing the parsed color
+     * @example
+     * ```ts
+     * Color.parse("red")
+     * Color.parse("#ff0000")
+     * Color.parse("rgb(255, 0, 0)")
+     * Color.parse("hsl(0, 100%, 50%)")
+     * ```
+     */
     static parse(color: string | ColorStr | BootstrapColor): Color {
         // receives a css color string and returns a Color object
         // if the string is not a valid color, returns a Color object with the default color
@@ -376,6 +391,17 @@ export class Color {
         }
     }
 
+    /**
+     * Creates a Color from a hexadecimal color string.
+     * @param hex - Hex color string (e.g., "#ff0000", "#f00", "#ff0000ff")
+     * @returns A new Color object
+     * @example
+     * ```ts
+     * Color.fromHex("#ff0000")  // Red
+     * Color.fromHex("#f00")     // Red (shorthand)
+     * Color.fromHex("#ff0000ff") // Red with full opacity
+     * ```
+     */
     static fromHex(hex: string): Color {
         if (hex.length === 4) {
             const [r, g, b] = hex
@@ -383,7 +409,7 @@ export class Color {
                 .split('')
                 .map(n => parseInt(n, 16));
 
-            return new Color(r * 16, g * 16, b * 16);
+            return new Color(r * 17, g * 17, b * 17);
         }
 
         const r = parseInt(hex.slice(1, 3), 16);
@@ -395,33 +421,69 @@ export class Color {
         return new Color(r, g, b, a);
     }
 
+    /**
+     * Creates a Color from RGB values.
+     * @param r - Red value (0-255)
+     * @param g - Green value (0-255)
+     * @param b - Blue value (0-255)
+     * @param a - Alpha value (0-1), defaults to 1
+     * @returns A new Color object
+     */
     static fromRGB(r: number, g: number, b: number, a?: number): Color {
         return new Color(r, g, b, a);
     }
 
+    /**
+     * Creates a Color from HSL values.
+     * @param h - Hue (0-1)
+     * @param s - Saturation (0-1)
+     * @param l - Lightness (0-1)
+     * @param a - Alpha value (0-1), defaults to 1
+     * @returns A new Color object
+     * @example
+     * ```ts
+     * Color.fromHSL(0, 1, 0.5)      // Red
+     * Color.fromHSL(0.33, 1, 0.5)   // Green
+     * Color.fromHSL(0.66, 1, 0.5)   // Blue
+     * ```
+     */
     static fromHSL(h: number, s: number, l: number, a?: number): Color {
         const params = ['hue', 'saturation', 'lightness'];
-        [h, s, l].forEach((v, i) => {
+        const values = [h, s, l];
+        
+        values.forEach((v, i) => {
             if (isNaN(v)) {
                 throw new Error(
                     `Invalid ${params[i]}, ${v} is not a parsable number`
                 );
             }
-
-            if (v > 1) {
-                console.warn(
-                    `Invalid ${params[i]}, ${v} is greater than 1. It will be set to 1`
-                );
-                v = 1;
-            }
-
-            if (v < 0) {
-                console.warn(
-                    `Invalid ${params[i]}, ${v} is less than 0. It will be set to 0`
-                );
-                v = 0;
-            }
         });
+
+        // Clamp values to 0-1 range
+        if (h > 1) {
+            console.warn(`Invalid hue, ${h} is greater than 1. It will be set to 1`);
+            h = 1;
+        }
+        if (h < 0) {
+            console.warn(`Invalid hue, ${h} is less than 0. It will be set to 0`);
+            h = 0;
+        }
+        if (s > 1) {
+            console.warn(`Invalid saturation, ${s} is greater than 1. It will be set to 1`);
+            s = 1;
+        }
+        if (s < 0) {
+            console.warn(`Invalid saturation, ${s} is less than 0. It will be set to 0`);
+            s = 0;
+        }
+        if (l > 1) {
+            console.warn(`Invalid lightness, ${l} is greater than 1. It will be set to 1`);
+            l = 1;
+        }
+        if (l < 0) {
+            console.warn(`Invalid lightness, ${l} is less than 0. It will be set to 0`);
+            l = 0;
+        }
 
         let r, g, b;
 
@@ -448,6 +510,10 @@ export class Color {
         return new Color(r * 255, g * 255, b * 255, a);
     }
 
+    /**
+     * Generates a random color.
+     * @returns A new Color object with random RGB values
+     */
     static random(): Color {
         return new Color(
             Math.random() * 255,
@@ -456,6 +522,11 @@ export class Color {
         );
     }
 
+    /**
+     * Creates a Color from a named CSS color.
+     * @param name - The name of the color (e.g., "red", "blue", "aliceblue")
+     * @returns A new Color object, or undefined if the name is not recognized
+     */
     static fromName<T extends ColorStr>(name: T): Color;
     static fromName(name: ColorStr): Color | undefined {
         const c = Color.colors[name];
@@ -463,6 +534,11 @@ export class Color {
         if (c) return new Color(...c);
     }
 
+    /**
+     * Creates a Color from a Bootstrap color name.
+     * @param name - The name of the Bootstrap color (e.g., "primary", "danger", "success")
+     * @returns A new Color object, or undefined if the name is not recognized
+     */
     static fromBootstrap<T extends BootstrapColor>(name: T): Color;
     static fromBootstrap(name: BootstrapColor): Color | undefined {
         const c = Color.bootstrap[name];
@@ -470,16 +546,22 @@ export class Color {
         if (c) return new Color(...c);
     }
 
+    /**
+     * Generates a random color that contrasts with the provided colors.
+     * Finds the largest gap in hue values and generates a color in that range.
+     * @param colors - Colors to contrast against
+     * @returns A new Color object with high contrast
+     */
     static generateRandomWithContrast(...colors: Color[]): Color {
         type interval = {
             diff: number;
             hues: number[];
         };
 
-        const hsls: number[] = colors.map(c => c.hsl.values[0]);
+        const hues: number[] = colors.map(c => c.hsl.hue);
 
-        const intervals = hsls.reduce((intervals, hue, i): interval[] => {
-            const next = hsls[i + 1];
+        const intervals = hues.reduce((intervals, hue, i): interval[] => {
+            const next = hues[i + 1];
             if (next) {
                 intervals.push({
                     diff: Math.abs(hue - next),
@@ -499,6 +581,29 @@ export class Color {
 
         const color = Color.fromHSL(hue, 0.5, 0.5);
         return color;
+    }
+    
+    /**
+     * Calculates the contrast ratio between two colors according to WCAG standards.
+     * @param color1 - First color
+     * @param color2 - Second color
+     * @returns Contrast ratio (1-21). Values >= 4.5 are generally readable, >= 7 is preferred.
+     * @example
+     * ```ts
+     * const contrast = Color.detectContrast(Color.fromName("black"), Color.fromName("white"));
+     * // Returns 21 (maximum contrast)
+     * ```
+     */
+    public static detectContrast(color1: Color, color2: Color): number {
+        const l1 =
+            0.2126 * Math.pow(color1.r / 255, 2.2) +
+            0.7152 * Math.pow(color1.g / 255, 2.2) +
+            0.0722 * Math.pow(color1.b / 255, 2.2);
+        const l2 =
+            0.2126 * Math.pow(color2.r / 255, 2.2) +
+            0.7152 * Math.pow(color2.g / 255, 2.2) +
+            0.0722 * Math.pow(color2.b / 255, 2.2);
+        return (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05);
     }
 
     /**
@@ -531,7 +636,7 @@ export class Color {
      */
     get closestName(): ClosestColor {
         const { colors } = Color;
-        const [r, g, b] = this.rgb.values;
+        const [r, g, b] = [this.r, this.g, this.b];
 
         return Object.entries(colors).reduce(
             (closest, [name, rgb]) => {
@@ -565,7 +670,7 @@ export class Color {
      */
     get closestBootstrap(): ClosestColor {
         const { bootstrap } = Color;
-        const [r, g, b] = this.rgb.values;
+        const [r, g, b] = [this.r, this.g, this.b];
 
         return Object.entries(bootstrap).reduce(
             (closest, [name, rgb]) => {
@@ -594,18 +699,33 @@ export class Color {
         );
     }
 
-    r: number;
-    g: number;
-    b: number;
-    a: number;
+    private r: number;
+    private g: number;
+    private b: number;
+    private a: number;
 
     /**
-     * @returns {Color} A copy of this color with no dependencies
+     * Creates a deep copy of this color.
+     * @returns A new Color object with the same RGBA values
      */
     public clone(): Color {
         return new Color(this.r, this.g, this.b, this.a);
     }
 
+    /**
+     * Creates a new Color instance.
+     * @param redOrString - Red value (0-255), or a color string to parse
+     * @param green - Green value (0-255)
+     * @param blue - Blue value (0-255)
+     * @param alpha - Alpha value (0-1), defaults to 1
+     * @example
+     * ```ts
+     * new Color(255, 0, 0)           // Red
+     * new Color(255, 0, 0, 0.5)      // Semi-transparent red
+     * new Color("red")                // Named color
+     * new Color("#ff0000")            // Hex color
+     * ```
+     */
     constructor(
         redOrString: number | string | ColorStr | BootstrapColor,
         green?: number,
@@ -630,8 +750,6 @@ export class Color {
             this.b = c.b;
             this.a = c.a;
         } else {
-            let allowed = false;
-
             const check: string[] = ['red', 'green', 'blue', 'alpha'];
 
             [redOrString, green, blue, alpha].forEach((value, index) => {
@@ -641,64 +759,210 @@ export class Color {
                         `Invalid ${check[index]}, ${value} is not a parsable number`
                     );
                 }
-
-                if (value > 255) {
-                    console.warn(
-                        `Invalid ${check[index]}, ${value} is greater than 255. It will be set to 255`
-                    );
-                    value = 255;
-                }
-
-                if (value < 0) {
-                    console.warn(
-                        `Invalid ${check[index]}, ${value} is less than 0. It will be set to 0`
-                    );
-                    value = 0;
-                }
-
-                allowed = true;
             });
 
-            alpha = alpha || 1;
+            // Clamp RGB values to 0-255
+            if (redOrString > 255) {
+                console.warn(`Invalid red, ${redOrString} is greater than 255. It will be set to 255`);
+                redOrString = 255;
+            }
+            if (redOrString < 0) {
+                console.warn(`Invalid red, ${redOrString} is less than 0. It will be set to 0`);
+                redOrString = 0;
+            }
+            if (green !== undefined) {
+                if (green > 255) {
+                    console.warn(`Invalid green, ${green} is greater than 255. It will be set to 255`);
+                    green = 255;
+                }
+                if (green < 0) {
+                    console.warn(`Invalid green, ${green} is less than 0. It will be set to 0`);
+                    green = 0;
+                }
+            }
+            if (blue !== undefined) {
+                if (blue > 255) {
+                    console.warn(`Invalid blue, ${blue} is greater than 255. It will be set to 255`);
+                    blue = 255;
+                }
+                if (blue < 0) {
+                    console.warn(`Invalid blue, ${blue} is less than 0. It will be set to 0`);
+                    blue = 0;
+                }
+            }
 
-            this.r = redOrString;
-            this.g = green || 0;
-            this.b = blue || 0;
+            alpha = alpha || 1;
+            
+            // Clamp alpha to 0-1
+            if (alpha > 1) {
+                console.warn(`Invalid alpha, ${alpha} is greater than 1. It will be set to 1`);
+                alpha = 1;
+            }
+            if (alpha < 0) {
+                console.warn(`Invalid alpha, ${alpha} is less than 0. It will be set to 0`);
+                alpha = 0;
+            }
+
+            // Round RGB values to integers
+            this.r = Math.round(redOrString);
+            this.g = Math.round(green || 0);
+            this.b = Math.round(blue || 0);
             this.a = alpha;
         }
     }
 
-    get rgb() {
-        const me = this;
-        return {
-            values: [me.r, me.g, me.b],
-            toString: (): string => `rgb(${me.r}, ${me.g}, ${me.b})`,
-            setRed: (value: number): Color => {
-                me.r = value;
-                return me;
-            },
-            setGreen: (value: number): Color => {
-                me.g = value;
-                return me;
-            },
-            setBlue: (value: number): Color => {
-                me.b = value;
-                return me;
-            }
-        };
+    /**
+     * Sets the alpha (opacity) value.
+     * @param value - Alpha value (0-1), will be clamped to valid range
+     * @returns This Color instance for method chaining
+     */
+    setAlpha(value: number): Color {
+        if (value > 1) {
+            console.warn(`Invalid alpha, ${value} is greater than 1. It will be set to 1`);
+            value = 1;
+        }
+        if (value < 0) {
+            console.warn(`Invalid alpha, ${value} is less than 0. It will be set to 0`);
+            value = 0;
+        }
+        this.a = value;
+        return this;
     }
 
-    get rgba() {
-        const me = this;
-        return {
-            ...me.rgb,
-            values: [...me.rgb.values, me.a],
-            toString: () => `rgba(${me.r}, ${me.g}, ${me.b}, ${me.a})`,
-            setAlpha: (value: number): Color => me.setAlpha(value),
-        };
+    /**
+     * Sets the red channel value.
+     * @param value - Red value (0-255), will be clamped to valid range and rounded to integer
+     * @returns This Color instance for method chaining
+     */
+    setRed(value: number): Color {
+        if (value > 255) {
+            console.warn(`Invalid red, ${value} is greater than 255. It will be set to 255`);
+            value = 255;
+        }
+        if (value < 0) {
+            console.warn(`Invalid red, ${value} is less than 0. It will be set to 0`);
+            value = 0;
+        }
+        this.r = Math.round(value);
+        return this;
+    }
+    
+    /**
+     * Sets the green channel value.
+     * @param value - Green value (0-255), will be clamped to valid range and rounded to integer
+     * @returns This Color instance for method chaining
+     */
+    setGreen(value: number): Color {
+        if (value > 255) {
+            console.warn(`Invalid green, ${value} is greater than 255. It will be set to 255`);
+            value = 255;
+        }
+        if (value < 0) {
+            console.warn(`Invalid green, ${value} is less than 0. It will be set to 0`);
+            value = 0;
+        }
+        this.g = Math.round(value);
+        return this;
+    }
+    
+    /**
+     * Sets the blue channel value.
+     * @param value - Blue value (0-255), will be clamped to valid range and rounded to integer
+     * @returns This Color instance for method chaining
+     */
+    setBlue(value: number): Color {
+        if (value > 255) {
+            console.warn(`Invalid blue, ${value} is greater than 255. It will be set to 255`);
+            value = 255;
+        }
+        if (value < 0) {
+            console.warn(`Invalid blue, ${value} is less than 0. It will be set to 0`);
+            value = 0;
+        }
+        this.b = Math.round(value);
+        return this;
     }
 
-    get hsl() {
+    /**
+     * Sets the hue while preserving saturation and lightness.
+     * @param value - Hue value (0-1)
+     * @returns This Color instance for method chaining
+     */
+    setHue(value: number): Color {
+        const hsl = this.hsl
+        const newColor = Color.fromHSL(value, hsl.saturation, hsl.lightness, this.a);
+        this.r = Math.round(newColor.r);
+        this.g = Math.round(newColor.g);
+        this.b = Math.round(newColor.b);
+        return this;
+    }
+
+    /**
+     * Sets the saturation while preserving hue and lightness.
+     * @param value - Saturation value (0-1)
+     * @returns This Color instance for method chaining
+     */
+    setSaturation(value: number): Color {
+        const hsl = this.hsl
+        const newColor = Color.fromHSL(hsl.hue, value, hsl.lightness, this.a);
+        this.r = Math.round(newColor.r);
+        this.g = Math.round(newColor.g);
+        this.b = Math.round(newColor.b);
+        return this;
+    }
+
+    /**
+     * Sets the lightness while preserving hue and saturation.
+     * @param value - Lightness value (0-1)
+     * @returns This Color instance for method chaining
+     */
+    setLightness(value: number): Color {
+        const hsl = this.hsl
+        const newColor = Color.fromHSL(hsl.hue, hsl.saturation, value, this.a);
+        this.r = Math.round(newColor.r);
+        this.g = Math.round(newColor.g);
+        this.b = Math.round(newColor.b);
+        return this;
+    }
+
+    /**
+     * Gets the red channel value.
+     * @returns Red value (0-255)
+     */
+    get red() {
+        return this.r;
+    }
+
+    /**
+     * Gets the green channel value.
+     * @returns Green value (0-255)
+     */
+    get green() {
+        return this.g;
+    }
+
+    /**
+     * Gets the blue channel value.
+     * @returns Blue value (0-255)
+     */
+    get blue() {
+        return this.b;
+    }
+
+    /**
+     * Gets the alpha (opacity) value.
+     * @returns Alpha value (0-1)
+     */
+    get alpha() {
+        return this.a;
+    }
+
+    /**
+     * Gets the HSL representation of this color.
+     * @returns Object containing hue, saturation, and lightness values (all 0-1)
+     * @private
+     */
+    private get hsl() {
         const me = this;
         let h: number, s: number;
 
@@ -733,168 +997,192 @@ export class Color {
 
             h /= 6;
         }
-
         return {
-            values: [h, s, l],
-            toString: () => `hsl(${h}, ${s}, ${l})`,
-            set: (hue: number, saturation: number, lightness: number): Color => {
-                const color = Color.fromHSL(hue, saturation, lightness, me.a);
-
-                me.r = color.r;
-                me.g = color.g;
-                me.b = color.b;
-
-                return this;
-            },
-            setHue: (value: number): Color => {
-                const color = Color.fromHSL(value, s, l, me.a);
-
-                me.r = color.r;
-                me.g = color.g;
-                me.b = color.b;
-
-                return this;
-            },
-            setSaturation: (value: number): Color => {
-                const color = Color.fromHSL(h, value, l, me.a);
-
-                me.r = color.r;
-                me.g = color.g;
-                me.b = color.b;
-
-                return this;
-            },
-            setLightness: (value: number): Color => {
-                const color = Color.fromHSL(h, s, value, me.a);
-
-                me.r = color.r;
-                me.g = color.g;
-                me.b = color.b;
-
-                return me;
-            }
-        };
+            hue: h,
+            saturation: s,
+            lightness: l,
+        }
     }
 
-    get hsla() {
-        const me = this;
-        return {
-            ...me.hsl,
-            values: [...me.hsl.values, me.a],
-            toString: (): string =>
-                `hsla(${me.hsl.values[0]}, ${me.hsl.values[1]}, ${me.hsl.values[2]}, ${me.a})`,
-            setAlpha: (value: number): Color => me.setAlpha(value),
-            set: (
-                hue: number,
-                saturation: number,
-                lightness: number,
-                alpha: number
-            ): Color => {
-                const color = Color.fromHSL(hue, saturation, lightness, alpha);
-
-                me.r = color.r;
-                me.g = color.g;
-                me.b = color.b;
-                me.a = color.a;
-
-                return this;
-            }
-        };
+    /**
+     * Gets the hue value.
+     * @returns Hue value (0-1)
+     */
+    get hue() {
+        return this.hsl.hue;
     }
 
-    get hex() {
-        const me = this;
-        const r = me.r.toString(16);
-        const g = me.g.toString(16);
-        const b = me.b.toString(16);
-
-        return {
-            values: [r, g, b],
-            toString: () => `#${r}${g}${b}`,
-            setRed: (value: number): Color => {
-                me.r = value;
-                return me;
-            },
-            setGreen: (value: number): Color => {
-                me.g = value;
-                return me;
-            },
-            setBlue: (value: number): Color => {
-                me.b = value;
-                return me;
-            }
-        };
+    /**
+     * Gets the saturation value.
+     * @returns Saturation value (0-1)
+     */
+    get saturation() {
+        return this.hsl.saturation;
     }
 
-    get hexa() {
-        const me = this;
-        const r = me.r.toString(16);
-        const g = me.g.toString(16);
-        const b = me.b.toString(16);
-        const a = me.a.toString(16);
-
-        return {
-            ...this.hex,
-            values: [r, g, b, a],
-            toString: () => `#${r}${g}${b}${a}`,
-            setAlpha: (value: number): Color => me.setAlpha(value),
-        };
+    /**
+     * Gets the lightness value.
+     * @returns Lightness value (0-1)
+     */
+    get lightness() {
+        return this.hsl.lightness;
     }
 
-    public setAlpha(value: number) {
-        this.a = value;
-        return this;
-    }
-
+    /**
+     * Converts the color to a string representation.
+     * @param type - Output format: 'hex', 'hexa', 'hsl', 'hsla', 'rgb', or 'rgba' (default)
+     * @returns String representation of the color
+     * @example
+     * ```ts
+     * color.toString('hex')   // "#ff0000"
+     * color.toString('rgb')   // "rgb(255, 0, 0)"
+     * color.toString('hsl')   // "hsl(0, 100%, 50%)"
+     * color.toString('rgba')  // "rgba(255, 0, 0, 1)"
+     * ```
+     */
     public toString(
         type: 'hex' | 'hexa' | 'hsl' | 'hsla' | 'rgb' | 'rgba' = 'rgba'
     ): string {
         switch (type) {
             case 'hex':
-                return this.hex.toString();
+                const rHex = Math.round(this.r).toString(16).padStart(2, '0');
+                const gHex = Math.round(this.g).toString(16).padStart(2, '0');
+                const bHex = Math.round(this.b).toString(16).padStart(2, '0');
+                return `#${rHex}${gHex}${bHex}`;
             case 'hexa':
-                return this.hexa.toString();
+                const rHexA = Math.round(this.r).toString(16).padStart(2, '0');
+                const gHexA = Math.round(this.g).toString(16).padStart(2, '0');
+                const bHexA = Math.round(this.b).toString(16).padStart(2, '0');
+                const aHex = Math.round(this.a * 255)
+                    .toString(16)
+                    .padStart(2, '0');
+                return `#${rHexA}${gHexA}${bHexA}${aHex}`;
             case 'hsl':
-                return this.hsl.toString();
+                const hsl = this.hsl;
+                return `hsl(${Math.round(hsl.hue * 360)}, ${Math.round(
+                    hsl.saturation * 100
+                )}%, ${Math.round(hsl.lightness * 100)}%)`;
             case 'hsla':
-                return this.hsla.toString();
+                const hsla = this.hsl;
+                return `hsla(${Math.round(hsla.hue * 360)}, ${Math.round(
+                    hsla.saturation * 100
+                )}%, ${Math.round(hsla.lightness * 100)}%, ${this.a})`;
             case 'rgb':
-                return this.rgb.toString();
+                return `rgb(${this.r}, ${this.g}, ${this.b})`;
             case 'rgba':
-                return this.rgba.toString();
+                return `rgba(${this.r}, ${this.g}, ${this.b}, ${this.a})`;
+            default:
+                return `rgba(${this.r}, ${this.g}, ${this.b}, ${this.a})`;
         }
     }
 
-    // generating colors
+    /**
+     * Darkens the color by decreasing its lightness.
+     * Mutates the current color instance.
+     * @param amount - Amount to darken (0-1)
+     * @returns This Color instance for method chaining
+     */
+    darken(amount: number): Color {
+        const hsl = this.hsl;
+        const newLightness = Math.max(0, hsl.lightness - amount);
+        const newColor = Color.fromHSL(hsl.hue, hsl.saturation, newLightness, this.a);
+        this.r = Math.round(newColor.r);
+        this.g = Math.round(newColor.g);
+        this.b = Math.round(newColor.b);
+        return this;
+    }
 
-    public compliment(num: number): Gradient {
+    /**
+     * Lightens the color by increasing its lightness.
+     * Mutates the current color instance.
+     * @param amount - Amount to lighten (0-1)
+     * @returns This Color instance for method chaining
+     */
+    lighten(amount: number): Color {
+        const hsl = this.hsl;
+        const newLightness = Math.min(1, hsl.lightness + amount);
+        const newColor = Color.fromHSL(hsl.hue, hsl.saturation, newLightness, this.a);
+        this.r = Math.round(newColor.r);
+        this.g = Math.round(newColor.g);
+        this.b = Math.round(newColor.b);
+        return this;
+    }
+
+    /**
+     * Inverts the color by subtracting each RGB channel from 255.
+     * Mutates the current color instance. Alpha is preserved.
+     * @returns This Color instance for method chaining
+     */
+    invert(): Color {
+        this.r = Math.round(255 - this.r);
+        this.g = Math.round(255 - this.g);
+        this.b = Math.round(255 - this.b);
+        return this;
+    }
+
+    /**
+     * Generates complementary colors by distributing them evenly around the color wheel.
+     * @param num - Number of colors to generate (minimum 2)
+     * @returns Array of Color objects including this color and its complements
+     * @example
+     * ```ts
+     * const colors = color.complement(3); // Returns 3 evenly spaced colors
+     * ```
+     */
+    public complement(num: number): Color[] {
         num = Math.floor(num);
         if (num < 2) num = 2;
 
         const interval = 1 / num;
-        const hsl = this.hsl.values;
+        const hsl = this.hsl;
         const hues = new Array(num - 1).fill(0).map((_, i) => {
-            return (hsl[0] + (i + 1) * interval) % 1;
+            return (hsl.hue + (i + 1) * interval) % 1;
         });
 
         const g = [
             this,
-            ...hues.map(h => Color.fromHSL(h, hsl[1], hsl[2], this.a))
+            ...hues.map(h => Color.fromHSL(h, hsl.saturation, hsl.lightness, this.a))
         ];
 
-        return new Gradient(...g);
+        return g
     }
 
+    /**
+     * Generates an analogous color scheme (three colors adjacent on the color wheel).
+     * @returns Tuple of three Color objects: [left neighbor, this color, right neighbor]
+     */
     public analogous(): [Color, Color, Color] {
-        const hsl = this.hsl.values;
-        const hues: [number, number] = [hsl[0] - 30 / 360, hsl[0] + 30 / 360];
-
-        const [h1, h2] = hues.map(h =>
-            Color.fromHSL(h, hsl[1], hsl[2], this.a)
+        const hsl = this.hsl;
+        const color1 = Color.fromHSL(
+            (hsl.hue + 1 / 12) % 1,
+            hsl.saturation,
+            hsl.lightness,
+            this.a
         );
-        return [this, h1, h2];
+        const color2 = this;
+        const color3 = Color.fromHSL(
+            (hsl.hue + 11 / 12) % 1,
+            hsl.saturation,
+            hsl.lightness,
+            this.a
+        );
+
+        return [color1, color2, color3];
     }
 
+    /**
+     * Interpolates between this color and another color.
+     * Creates a new color that is a blend between the two.
+     * @param toColor - Target color to interpolate towards
+     * @param distance - Interpolation distance (0-1), where 0 is this color and 1 is the target
+     * @returns A new Color object representing the interpolated color
+     * @example
+     * ```ts
+     * const red = new Color(255, 0, 0);
+     * const blue = new Color(0, 0, 255);
+     * const purple = red.interpolate(blue, 0.5); // 50% between red and blue
+     * ```
+     */
     public interpolate(toColor: Color, distance = 0.5): Color {
         if (isNaN(distance)) {
             console.warn(
@@ -917,8 +1205,8 @@ export class Color {
             distance = 0.5;
         }
 
-        const [r1, g1, b1, a1] = this.rgba.values;
-        const [r2, g2, b2, a2] = toColor.rgba.values;
+        const [r1, g1, b1, a1] = [this.r, this.g, this.b, this.a];
+        const [r2, g2, b2, a2] = [toColor.r, toColor.g, toColor.b, toColor.a];
 
         const r = r1 + (r2 - r1) * distance;
         const g = g1 + (g2 - g1) * distance;
@@ -928,92 +1216,20 @@ export class Color {
         return new Color(r, g, b, a);
     }
 
-    public linearFade(color: Color, frames: number): Gradient {
-        return new Gradient(
-            ...new Array(frames).fill(0).map((_, i) => {
-                return new Color(
-                    Math.floor(this.r + ((color.r - this.r) / frames) * i),
-                    Math.floor(this.g + ((color.g - this.g) / frames) * i),
-                    Math.floor(this.b + ((color.b - this.b) / frames) * i),
-                    this.a + ((color.a - this.a) / frames) * i
-                );
-            })
-        );
-    }
-
-    public logarithmicFade(color: Color, frames: number, base = 2) {
-        return new Gradient(
-            ...new Array(frames).fill(0).map((_, i) => {
-                return new Color(
-                    Math.floor(
-                        this.r +
-                            ((color.r - this.r) / Math.pow(base, frames)) *
-                                Math.pow(base, i)
-                    ),
-                    Math.floor(
-                        this.g +
-                            ((color.g - this.g) / Math.pow(base, frames)) *
-                                Math.pow(base, i)
-                    ),
-                    Math.floor(
-                        this.b +
-                            ((color.b - this.b) / Math.pow(base, frames)) *
-                                Math.pow(base, i)
-                    ),
-                    this.a +
-                        ((color.a - this.a) / Math.pow(base, frames)) *
-                            Math.pow(base, i)
-                );
-            })
-        );
-    }
-
-    public exponentialFade(color: Color, frames: number, base = 2) {
-        return new Gradient(
-            ...new Array(frames).fill(0).map((_, i) => {
-                return new Color(
-                    Math.floor(
-                        this.r +
-                            ((color.r - this.r) / Math.pow(base, frames)) *
-                                Math.pow(base, i)
-                    ),
-                    Math.floor(
-                        this.g +
-                            ((color.g - this.g) / Math.pow(base, frames)) *
-                                Math.pow(base, i)
-                    ),
-                    Math.floor(
-                        this.b +
-                            ((color.b - this.b) / Math.pow(base, frames)) *
-                                Math.pow(base, i)
-                    ),
-                    this.a +
-                        ((color.a - this.a) / Math.pow(base, frames)) *
-                            Math.pow(base, i)
-                );
-            })
-        );
-    }
-
-    public detectContrast(color: Color): number {
-        const l1 =
-            0.2126 * Math.pow(this.r / 255, 2.2) +
-            0.7152 * Math.pow(this.g / 255, 2.2) +
-            0.0722 * Math.pow(this.b / 255, 2.2);
-        const l2 =
-            0.2126 * Math.pow(color.r / 255, 2.2) +
-            0.7152 * Math.pow(color.g / 255, 2.2) +
-            0.0722 * Math.pow(color.b / 255, 2.2);
-
-        return (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05);
-    }
 
     // view in console
 
+    /**
+     * Logs text to the console with this color applied.
+     * @param args - Text and values to log
+     */
     public logText(...args: any) {
         console.log(`%c${args.join(' ')}`, `color: ${this.toString()}`);
     }
 
+    /**
+     * Displays the color in the console with its closest named color.
+     */
     public view() {
         this.logText('Color:', this.closestName.name);
     }
