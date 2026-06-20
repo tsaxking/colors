@@ -699,17 +699,14 @@ export class Color {
         );
     }
 
-    private r: number;
-    private g: number;
-    private b: number;
-    private a: number;
+    private readonly r: number;
+    private readonly g: number;
+    private readonly b: number;
+    private readonly a: number;
 
-    /**
-     * Creates a deep copy of this color.
-     * @returns A new Color object with the same RGBA values
-     */
-    public clone(): Color {
-        return new Color(this.r, this.g, this.b, this.a);
+
+    private withValues(r = this.r, g = this.g, b = this.b, a = this.a): Color {
+        return new Color(r, g, b, a);
     }
 
     /**
@@ -825,8 +822,7 @@ export class Color {
             console.warn(`Invalid alpha, ${value} is less than 0. It will be set to 0`);
             value = 0;
         }
-        this.a = value;
-        return this;
+        return this.withValues(this.r, this.g, this.b, value);
     }
 
     /**
@@ -843,8 +839,7 @@ export class Color {
             console.warn(`Invalid red, ${value} is less than 0. It will be set to 0`);
             value = 0;
         }
-        this.r = Math.round(value);
-        return this;
+        return this.withValues(Math.round(value), this.g, this.b, this.a);
     }
     
     /**
@@ -861,8 +856,7 @@ export class Color {
             console.warn(`Invalid green, ${value} is less than 0. It will be set to 0`);
             value = 0;
         }
-        this.g = Math.round(value);
-        return this;
+        return this.withValues(this.r, Math.round(value), this.b, this.a);
     }
     
     /**
@@ -879,8 +873,7 @@ export class Color {
             console.warn(`Invalid blue, ${value} is less than 0. It will be set to 0`);
             value = 0;
         }
-        this.b = Math.round(value);
-        return this;
+        return this.withValues(this.r, this.g, Math.round(value), this.a);
     }
 
     /**
@@ -891,10 +884,12 @@ export class Color {
     setHue(value: number): Color {
         const hsl = this.hsl
         const newColor = Color.fromHSL(value, hsl.saturation, hsl.lightness, this.a);
-        this.r = Math.round(newColor.r);
-        this.g = Math.round(newColor.g);
-        this.b = Math.round(newColor.b);
-        return this;
+        return this.withValues(
+            Math.round(newColor.r),
+            Math.round(newColor.g),
+            Math.round(newColor.b),
+            this.a
+        );
     }
 
     /**
@@ -905,10 +900,12 @@ export class Color {
     setSaturation(value: number): Color {
         const hsl = this.hsl
         const newColor = Color.fromHSL(hsl.hue, value, hsl.lightness, this.a);
-        this.r = Math.round(newColor.r);
-        this.g = Math.round(newColor.g);
-        this.b = Math.round(newColor.b);
-        return this;
+        return this.withValues(
+            Math.round(newColor.r),
+            Math.round(newColor.g),
+            Math.round(newColor.b),
+            this.a
+        );
     }
 
     /**
@@ -919,10 +916,12 @@ export class Color {
     setLightness(value: number): Color {
         const hsl = this.hsl
         const newColor = Color.fromHSL(hsl.hue, hsl.saturation, value, this.a);
-        this.r = Math.round(newColor.r);
-        this.g = Math.round(newColor.g);
-        this.b = Math.round(newColor.b);
-        return this;
+        return this.withValues(
+            Math.round(newColor.r),
+            Math.round(newColor.g),
+            Math.round(newColor.b),
+            this.a
+        );
     }
 
     /**
@@ -1085,11 +1084,7 @@ export class Color {
     darken(amount: number): Color {
         const hsl = this.hsl;
         const newLightness = Math.max(0, hsl.lightness - amount);
-        const newColor = Color.fromHSL(hsl.hue, hsl.saturation, newLightness, this.a);
-        this.r = Math.round(newColor.r);
-        this.g = Math.round(newColor.g);
-        this.b = Math.round(newColor.b);
-        return this;
+        return Color.fromHSL(hsl.hue, hsl.saturation, newLightness, this.a);
     }
 
     /**
@@ -1101,11 +1096,7 @@ export class Color {
     lighten(amount: number): Color {
         const hsl = this.hsl;
         const newLightness = Math.min(1, hsl.lightness + amount);
-        const newColor = Color.fromHSL(hsl.hue, hsl.saturation, newLightness, this.a);
-        this.r = Math.round(newColor.r);
-        this.g = Math.round(newColor.g);
-        this.b = Math.round(newColor.b);
-        return this;
+        return Color.fromHSL(hsl.hue, hsl.saturation, newLightness, this.a);
     }
 
     /**
@@ -1114,10 +1105,12 @@ export class Color {
      * @returns This Color instance for method chaining
      */
     invert(): Color {
-        this.r = Math.round(255 - this.r);
-        this.g = Math.round(255 - this.g);
-        this.b = Math.round(255 - this.b);
-        return this;
+        return this.withValues(
+            Math.round(255 - this.r),
+            Math.round(255 - this.g),
+            Math.round(255 - this.b),
+            this.a
+        );
     }
 
     /**
@@ -1140,7 +1133,7 @@ export class Color {
         });
 
         const g = [
-            this,
+            this.withValues(),
             ...hues.map(h => Color.fromHSL(h, hsl.saturation, hsl.lightness, this.a))
         ];
 

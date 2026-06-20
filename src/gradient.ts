@@ -1,6 +1,6 @@
 import { Color } from './color';
 export class Gradient {
-    colors: Color[];
+    readonly colors: ReadonlyArray<Color>;
 
     /**
      * Creates a a random gradient
@@ -15,7 +15,7 @@ export class Gradient {
 
     static linearFade(from: Color, to: Color, frames = 60): Gradient {
       return new Gradient(...Array.from({ length: frames }, (_, i) => {
-        const ratio = i / (frames - 1);
+                const ratio = frames === 1 ? 0 : i / (frames - 1);
         return from.interpolate(to, ratio);
        }));
     }
@@ -35,7 +35,7 @@ export class Gradient {
     }
 
     constructor(...colors: Color[]) {
-        this.colors = colors;
+        this.colors = [...colors];
     }
 
     /**
@@ -105,9 +105,10 @@ export class Gradient {
      * Adds colors to the gradient
      */
     public add(...gradients: Gradient[]) {
-        gradients.forEach(g => {
-            this.colors.push(...g.colors);
-        });
+        return new Gradient(
+            ...this.colors,
+            ...gradients.flatMap(g => g.colors)
+        );
     }
 
     /**
@@ -115,7 +116,6 @@ export class Gradient {
      * @returns {Gradient} Returns the current gradient
      */
     public random(): Gradient {
-        this.colors.forEach(_ => Math.random() - 0.5);
-        return this;
+        return new Gradient(...[...this.colors].sort(() => Math.random() - 0.5));
     }
 }
